@@ -8,7 +8,7 @@ return <div className="bg-primary">
         <div className="menu-trigger"></div>
         <nav id="menu">
             <ul>
-                <li><a href="">Conócenos</a></li>
+                <li><a href="">Conocenos</a></li>
                 <li><a href="">Equipo</a></li>
                 <li><a href="">Servicios</a></li>
              </ul>
