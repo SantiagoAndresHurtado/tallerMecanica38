@@ -3,28 +3,6 @@ import "../style.css";
 
 const Home = () => (
   <div className="bg-primary">
-      <header id="header">
-        <div className="container">
-          <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
-          <div className="menu-trigger"></div>
-          <nav id="menu">
-            <ul>
-              <li><a>Conocenos</a></li>
-              <li><a>Equipo</a></li>
-              <li><a>Servicios</a></li>
-            </ul>
-            <ul>
-              <li><a>Cotiza</a></li>
-              <li><a>Galería</a></li>
-              <li><a> Contacto</a></li>
-            </ul>
-          </nav>
-          {/* <!-- / navigation--> */}
-        </div>
-        {/* <!-- / container--> */}
-
-      </header>
-      {/* <!-- / header--> */}
       <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
           <main>
@@ -62,7 +40,7 @@ const Home = () => (
             </div>
           </main>
         </div>
-        <div id="layoutAuthentication_footer">
+        {/* <div id="layoutAuthentication_footer">
           <footer className="py-4 bg-light mt-auto">
             <div className="container-fluid px-4">
               <div className="d-flex align-items-center justify-content-between small">
@@ -75,7 +53,7 @@ const Home = () => (
               </div>
             </div>
           </footer>
-        </div>
+        </div> */}
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
       <script src="js/scripts.js"></script>
