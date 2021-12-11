@@ -1,6 +1,8 @@
 const express = require("express");
+const {connect, connection } = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -27,3 +29,11 @@ app.post('/users', (req, res) => {
     console.log(req.body.role)
     res.send(JSON.stringify({"status": 200, "error": null, "response": data}))
 });
+
+connect(process.env.MONGODB_URI)
+.then(() => console.log('Conectado a la base de datos'))
+.catch((error) => console.error(error));
+
+const userRoutes = require("./routes/users");
+app.use(express.json());
+app.use('/api', userRoutes);
