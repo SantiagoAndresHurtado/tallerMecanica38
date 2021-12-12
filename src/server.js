@@ -34,6 +34,17 @@ connect(process.env.MONGODB_URI)
 .then(() => console.log('Conectado a la base de datos'))
 .catch((error) => console.error(error));
 
-const userRoutes = require("./routes/users");
+const citaRoutes = require("./routes/citas");
+const colaboradorRoutes = require("./routes/colaboradores");
+const estadoServicioRoutes = require("./routes/estadoServicios");
+const estadoVehiculoRoutes = require("./routes/estadoVehiculos");
+const rolRoutes = require("./routes/roles");
+const servicioRoutes = require("./routes/servicios");
+
 app.use(express.json());
-app.use('/api', userRoutes);
+app.use('/api', citaRoutes);
+app.use('/api', colaboradorRoutes);
+app.use('/api', estadoServicioRoutes);
+app.use('/api', estadoVehiculoRoutes);
+app.use('/api', rolRoutes);
+app.use('/api', servicioRoutes);
