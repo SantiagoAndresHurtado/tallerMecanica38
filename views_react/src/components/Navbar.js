@@ -19,8 +19,28 @@ const Navbar = ({ history }) => {
 
   return (
     <div className="bg-primary">
+      
       <header id="header">
         <div className="container">
+        <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/Users" exact>Registro</NavLink>
+            </li>
+            <li class="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/Services" exact>Programar Servicios</NavLink>
+            </li>
+          </ul>
+        
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/Reports" exact>Reportes</NavLink>
+            </li>
+            <li class="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/Schedule" exact>Mi Agenda</NavLink>
+            </li>
+          </ul>
+ {/* <!-- /
           <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
           <div className="menu-trigger"></div>
           <nav id="menu">

@@ -27,6 +27,8 @@ app.post('/users', (req, res) => {
     console.log(req.body.lastname)
     console.log(req.body.id)
     console.log(req.body.role)
+    console.log(req.body.email)
+    console.log(req.body.password)
     res.send(JSON.stringify({"status": 200, "error": null, "response": data}))
 });
 
