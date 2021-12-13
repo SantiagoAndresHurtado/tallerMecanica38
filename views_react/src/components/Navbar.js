@@ -25,7 +25,7 @@ const Navbar = ({ history }) => {
         <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
         <ul class="nav nav-pills">
             <li class="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/Users" exact>Registro</NavLink>
+              <NavLink className="nav-link" aria-current="page" to="/Registro" exact>Registro</NavLink>
             </li>
             <li class="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/Services" exact>Programar Servicios</NavLink>

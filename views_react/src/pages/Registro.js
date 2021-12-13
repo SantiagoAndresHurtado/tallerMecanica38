@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
  
-const Users = () => {
+const Registro = () => {
   const [state, setState] = useState({
     name: "",
     lastname: "",
     id: "",
-    role: "",
     email: "",
-    password: ""
+    password: "",
+    role: ""
   })
 
   const handleChange = (event) => {
@@ -15,24 +15,26 @@ const Users = () => {
         ...state,
         [event.target.name]: event.target.value
       })
-  }
+    }
 
   const handleSubmit = (event) => {
-        alert('Sus datos se han guardado exitosamente');
-        event.preventDefault();
-     
-        fetch('http://localhost:9000/users', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          // We convert the React state to JSON and send it as the POST body
-          body: JSON.stringify(state)
-        }).then(function(response) {
-          return response.json();
-        });
-      }
+    event.preventDefault(); 
+    alert('Sus datos se han guardado exitosamente');
+    fetch('http://localhost:9000/crearUsuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // We convert the React state to JSON and send it as the POST body
+      body: JSON.stringify(state)
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .catch(error =>{
+      console.error(error);
+    })
+  }
 
   return (
         <div className="container">
@@ -53,7 +55,7 @@ const Users = () => {
                             
                             <br/>
                       
-                            <input type="text" name="id" class="form-control" id="floatingInput" placeholder="cedula" value={state.id} onChange={handleChange} />
+                            <input type="text" name="id" class="form-control" id="floatingInput" placeholder="Cédula" value={state.id} onChange={handleChange} />
 
                             <br/>
 
@@ -61,7 +63,7 @@ const Users = () => {
                             
                             <br/>
 
-                            <input type="password" name="password" class="form-control" id="floatingInput" placeholder="contraseña" value={state.password} onChange={handleChange}/>
+                            <input type="password" name="password" class="form-control" id="floatingInput" placeholder="Contraseña" value={state.password} onChange={handleChange}/>
                           
                             <br/>
 
@@ -88,4 +90,4 @@ const Users = () => {
   );
 }
  
-export default Users;
+export default Registro;

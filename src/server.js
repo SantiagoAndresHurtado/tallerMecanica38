@@ -1,7 +1,9 @@
+const axios = require('axios');
+const cors = require("cors");
+const { response } = require('express');
 const express = require("express");
 const {connect, connection } = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require("cors");
 require('dotenv').config();
 
 const app = express();
@@ -13,6 +15,25 @@ const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => console.log("server listening on port", PORT));
 
+const client = axios.create({baseURL: "http://localhost:9000/api/"});
+
+
+app.post('/ingresar', (req, res) => {
+    client          
+    .get(`colaboradores/${req.body.email}`)
+    .then((res) => {
+        if (res.data != null && req.body.password==res.data.contrasena){
+            console.log("ingreso exitoso")
+        }
+        else {
+            console.log("Usuario o contraseña incorrectos")
+        }
+    })
+    .catch(err =>{
+        console.error(err)
+    });
+});
+
 app.get('/', (req, res) => {
     res.send("Here is the login");
 });
@@ -21,15 +42,22 @@ app.get('/appointment', (req, res) => {
     res.send({ express: "Here is the calendar"});
 });
 
-app.post('/users', (req, res) => {
-    let data = {name: req.body.name, apellido: req.body.lastname};
-    console.log(req.body.name)
-    console.log(req.body.lastname)
-    console.log(req.body.id)
-    console.log(req.body.role)
-    console.log(req.body.email)
-    console.log(req.body.password)
-    res.send(JSON.stringify({"status": 200, "error": null, "response": data}))
+app.post('/crearUsuario', (req, res) => {
+    client
+    .post('colaboradores', {
+        "nombres": req.body.name, 
+        "apellidos": req.body.lastname, 
+        "numeroid":req.body.id, 
+        "correo":req.body.email, 
+        "contrasena":req.body.password, 
+        "idrol":req.body.role
+    })
+    .then((res) => {
+        console.log(`statusCode: ${res.status}`)
+    })
+    .catch(err =>{
+        console.error(err)
+    });
 });
 
 connect(process.env.MONGODB_URI)

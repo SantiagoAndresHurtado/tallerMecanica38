@@ -19,13 +19,16 @@ router.get('/colaboradores', (req, res) => {
     .catch((error) => res.json({message:error}))
 });
 
-//encontrar usuario
-router.get('/colaboradores/:id', (req, res) => {
-    const {id} = req.params;
+//encontrar usuario por email
+router.get('/colaboradores/:correo', (req, res) => {
+    const correo = req.params;
     colaboradorSchema
-    .findById(id)
+    .findOne(correo)
     .then((data) => res.json(data))
-    .catch((error) => res.json({message:error}))
+    .catch((error) => {
+        console.log(error),
+        res.json({message:error})
+    })
 });
 
 //cambiar usuario

@@ -9,7 +9,7 @@ const colaboradorSchema = mongoose.Schema({
         required:true
     },
     numeroid:{
-        type:Number,
+        type:String,
         required:true
     },
     idrol:{
@@ -20,7 +20,7 @@ const colaboradorSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    contraseña:{
+    contrasena:{
         type:String,
         required:true
     }
