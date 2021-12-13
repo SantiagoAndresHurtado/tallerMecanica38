@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Calendar from '../Calendar_1.jpg';
  
 const Schedule = () => {
   const [state, setState] = useState({
@@ -104,11 +103,99 @@ const Schedule = () => {
                         </div>
                         </div>
 
-                  <div className="col-sm">
+                        <div className="col-sm">
                   <div className="card shadow-lg border-0 rounded-lg mt-5">
                     <div className="card-body">
-                    <div className="card-header"><h3 className="text-center font-weight-light my-4">Mis Servicios</h3></div>
-                    <img src={Calendar} class="img-fluid" />
+                    <div className="card-header"><h3 className="text-center font-weight-light my-4">Mis servicios programados</h3></div>
+                    
+                    <table class="table table-hover table-bordered">
+
+                          <thead>
+                            <tr>
+                              <th scope="col">Hora</th>
+                              <th scope="col"> Servicio</th>                              
+      
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">9:00</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">9:30</th>
+                              <td>Llantas</td>
+            
+                            </tr>
+                            <tr>
+                              <th scope="row">10:00</th>
+                              <td>Amortiguadores</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">10:30</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row">11:00</th>
+                              <td>Amortiguadores</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">11:30</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">12:00</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+
+                            </tr>
+                            <tr>
+                              <th scope="row">12:30</th>
+                              <td>Pastillas</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">13:00</th>
+                              <td>Discos</td>
+
+                            </tr>
+                            <tr>
+                              <th scope="row">13:30</th>
+                              <td>Discos</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">14:00</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">14:30</th>
+                              <td>Pastillas</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">15:00</th>
+                              <td>Discos</td>
+
+                            </tr>
+                            <tr>
+                              <th scope="row">15:30</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">16:00</th>
+                              <td>Aceite</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">16:30</th>
+                              <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">17:00</th>
+                              <td>Llantas</td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+
                     </div>
             </div>
             </div>
