@@ -6,11 +6,10 @@ import Error from "./components/Errors";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import Profile from "./pages/Profile";
 import Reports from "./pages/Reports";
+import Registro from "./pages/Registro";
 import Schedule from "./pages/Schedule";
 import Services from "./pages/Services";
-import Registro from "./pages/Registro";
 import './App.css'
 
 class App extends Component{
@@ -25,6 +24,7 @@ class App extends Component{
                         <Route path="/Services" element={<Services />} />
                         <Route path="/Reports" element={<Reports />} />
                         <Route path="/Schedule" element={<Schedule />} />
+                        <Route path="*" element={<Error />} />
                     </Routes>
                 </div>
             </BrowserRouter><Footer /></>
