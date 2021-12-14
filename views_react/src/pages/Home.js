@@ -28,9 +28,9 @@ const Home = () => {
       })
       .then(response => response.json())
       .then(json => {
-        if (json.rol == 1) navigate("/Reports");
-        else if (json.rol == 2) navigate("/Schedule");
-        else if (json.rol == 3) navigate("/Services");
+        if (json.rol == "Administrador") navigate("/Reports");
+        else if (json.rol == "Mecánico") navigate("/Schedule");
+        else if (json.rol == "Recepcionista") navigate("/Services");
         else console.log("Usuario o contraseña incorrectos");
       })
       .catch(err => console.error(err));
