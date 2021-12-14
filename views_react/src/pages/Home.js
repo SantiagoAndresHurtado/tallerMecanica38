@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useCallback, useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import "../style.css";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState({
     email: "",
     password: ""
@@ -17,19 +19,21 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch('http://localhost:9000/ingresar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      // We convert the React state to JSON and send it as the POST body
-      body: JSON.stringify(state)
-    })
-    .then((res) => {
-      return res.json();
-    })
-    .catch(error =>{
-      console.error(error);
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        // We convert the React state to JSON and send it as the POST body
+        body: JSON.stringify(state)
+      })
+      .then(response => response.json())
+      .then(json => {
+        if (json.rol == 1) navigate("/Reports");
+        else if (json.rol == 2) navigate("/Schedule");
+        else if (json.rol == 3) navigate("/Services");
+        else console.log("Usuario o contraseña incorrectos");
+      })
+      .catch(err => console.error(err));
   }
 
   return(

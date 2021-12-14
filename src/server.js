@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cors = require("cors");
-const { response } = require('express');
+const {response} = require('express');
 const express = require("express");
 const {connect, connection } = require('mongoose');
 const bodyParser = require('body-parser');
@@ -18,15 +18,17 @@ app.listen(PORT, () => console.log("server listening on port", PORT));
 const client = axios.create({baseURL: "http://localhost:9000/api/"});
 
 
-app.post('/ingresar', (req, res) => {
+app.post('/ingresar', (request, response) => {
     client          
-    .get(`colaboradores/${req.body.email}`)
+    .get(`colaboradores/${request.body.email}`)
     .then((res) => {
-        if (res.data != null && req.body.password==res.data.contrasena){
+        if (res.data != null && request.body.password==res.data.contrasena){
             console.log("ingreso exitoso")
+            response.json({rol: res.data.idrol})
         }
         else {
             console.log("Usuario o contraseña incorrectos")
+            response.json({rol: null})
         }
     })
     .catch(err =>{
