@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 const servicioSchema = mongoose.Schema({
     nombre:{
         type:String,
-        requires:true
+        requires:false
     },
     costo:{
         type:String,
-        requires:true
+        requires:false
     },
     duración:{
         type:String,
-        required:true
+        required:false
     },
     descripción:{
         type:String,
-        required:true
+        required:false
     },
     estado:{
         type:String,
-        required:true
+        required:false
     }
 })
 module.exports=mongoose.model('Servicio', servicioSchema);
