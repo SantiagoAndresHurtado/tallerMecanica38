@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Reports from "./pages/Reports";
 import Registro from "./pages/Registro";
-import Schedule from "./pages/Schedule";
+import Agenda from "./pages/Agenda";
 import Services from "./pages/Services";
 import './App.css'
 
@@ -23,7 +23,7 @@ class App extends Component{
                         <Route path="/Registro" element={<Registro />} />
                         <Route path="/Services" element={<Services />} />
                         <Route path="/Reports" element={<Reports />} />
-                        <Route path="/Schedule" element={<Schedule />} />
+                        <Route path="/Schedule" element={<Agenda />} />
                         <Route path="*" element={<Error />} />
                     </Routes>
                 </div>

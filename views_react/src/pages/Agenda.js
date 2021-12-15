@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
  
-const Schedule = () => {
+const Agenda = () => {
+  const initialData = 
+    fetch('http://localhost:9000/api/citas/2021-12-11')
+    .then(response => response.json())
+    .then(data => console.log(data));
+
   const [state, setState] = useState({
-    
     vestatus: "",   
     comment: ""
   })
@@ -21,21 +25,21 @@ const Schedule = () => {
   }
 
   const handleSubmit = (event) => {
-        alert('Sus datos se han guardado exitosamente');
-        event.preventDefault();
-     
-        fetch('http://localhost:9000/actualizacioncitas', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          // We convert the React state to JSON and send it as the POST body
-          body: JSON.stringify(state)
-        }).then(function(response) {
-          return response.json();
-        });
-      }
+    alert('Sus datos se han guardado exitosamente');
+    event.preventDefault();
+  
+    fetch('http://localhost:9000/actualizacioncitas', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      // We convert the React state to JSON and send it as the POST body
+      body: JSON.stringify(state)
+    }).then(function(response) {
+      return response.json();
+    });
+  }
 
   return (
     <div className="container">
@@ -180,4 +184,4 @@ const Schedule = () => {
   );
 }
 
-export default Schedule;
+export default Agenda;

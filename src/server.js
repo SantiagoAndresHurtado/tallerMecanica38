@@ -2,14 +2,14 @@ const axios = require('axios');
 const bcrypt = require('bcrypt');
 const cors = require("cors");
 const express = require("express");
-const {connect, connection } = require('mongoose');
+const app = express();
+const {connect} = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const app = express();
 app.use(cors());
-// parse application/json
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/views_react'));
 
 const PORT = process.env.PORT || 9000;
 
