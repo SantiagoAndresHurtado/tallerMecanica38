@@ -12,7 +12,7 @@ const colaboradorSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    idrol:{
+    rol:{
         type:String,
         required:true
     },

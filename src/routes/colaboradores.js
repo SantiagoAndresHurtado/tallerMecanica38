@@ -5,6 +5,7 @@ const router = express.Router();
 //crear usuario
 router.post('/colaboradores', (req, res) => {
     const colaborador = colaboradorSchema(req.body);
+    console.log(req.body)
     colaborador
     .save()
     .then((data) => res.json(data))
