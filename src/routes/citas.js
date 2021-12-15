@@ -19,11 +19,20 @@ router.get('/citas', (req, res) => {
     .catch((error) => res.json({message:error}))
 });
 
-//encontrar cita
-router.get('/citas/:id', (req, res) => {
-    const {id} = req.params;
+//encontrar cita por id
+// router.get('/citas/:id', (req, res) => {
+//     const {id} = req.params;
+//     citaSchema
+//     .findById(id)
+//     .then((data) => res.json(data))
+//     .catch((error) => res.json({message:error}))
+// });
+
+//encontrar cita por fecha
+router.get('/citas/:fecha', (req, res) => {
+    const fecha = req.params;
     citaSchema
-    .findById(id)
+    .find(fecha)
     .then((data) => res.json(data))
     .catch((error) => res.json({message:error}))
 });
