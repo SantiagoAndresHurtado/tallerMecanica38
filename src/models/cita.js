@@ -2,35 +2,35 @@ const mongoose = require("mongoose");
 const citaSchema = mongoose.Schema({
     fecha:{
         type:String,
-        requires:true
+        required:false
     },
     hora:{
         type:String,
-        required:true
+        required:false
     },
     placa:{
         type:String,
-        required:true
+        required:false
     },
     idservicio:{
         type:String,
-        required:true
+        required:false
     },
     idempleado:{
         type:String,
-        required:true
+        required:false
     },
     estadoServicio:{
         type:String,
-        required:true
+        required:false
     },
     estadoVehiculo:{
         type:String,
-        required:true
+        required:false
     },
     comentario:{
         type:String,
-        required:true
+        required:false
     }
 })
 module.exports=mongoose.model('Cita', citaSchema);

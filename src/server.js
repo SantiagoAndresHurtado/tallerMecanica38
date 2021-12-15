@@ -40,8 +40,21 @@ app.get('/', (req, res) => {
     res.send("Here is the login");
 });
 
-app.get('/appointment', (req, res) => {
-    res.send({ express: "Here is the calendar"});
+app.post('/actualizacioncitas', (req, res) => {
+    client
+    .put('citas/61b91047f0cb0da089dd3d28', {
+        "estadoVehiculo":req.body.vestatus,
+        "comentario":req.body.comment
+
+    })
+    .then((res) => {
+        console.log(`statusCode: ${res.status}`)
+    })
+    .catch(err =>{
+        console.error(err)
+    });
+    
+    console.log(req.body)
 });
 
 app.post('/crearUsuario', (req, res) => {
@@ -72,6 +85,7 @@ const estadoServicioRoutes = require("./routes/estadoServicios");
 const estadoVehiculoRoutes = require("./routes/estadoVehiculos");
 const rolRoutes = require("./routes/roles");
 const servicioRoutes = require("./routes/servicios");
+const { replaceOne } = require('./models/cita');
 
 app.use(express.json());
 app.use('/api', citaRoutes);
