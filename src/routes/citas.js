@@ -31,11 +31,13 @@ router.get('/citas/:id', (req, res) => {
 //cambiar cita
 router.put('/citas/:id', (req, res) => {
     const {id} = req.params;
-    const {fecha, hora, placa, idservicio, idempleado, estadoServicio, estadoVehiculo, comentario} = req.body;
+    const { estadoVehiculo, comentario} = req.body;
     citaSchema
-    .updateOne({_id:id}, {$set: {fecha, hora, placa, idservicio, idempleado, estadoServicio, estadoVehiculo, comentario}})
+    .updateOne({_id:id}, {$set: {estadoVehiculo, comentario}})
     .then((data) => res.json(data))
     .catch((error) => res.json({message:error}))
+    console.log("$$")
+    console.log(req.body)
 });
 
 //borrar cita
