@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
+import Session from 'react-session-api'
  
 const Agenda = () => {
-  const initialData = 
-    fetch('http://localhost:9000/api/citas/2021-12-11')
-    .then(response => response.json())
-    .then(data => console.log(data));
+  let today = new Date();
+  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  let initialData;
+  console.log(Session.get("userid"))
+  fetch(`http://localhost:9000/api/citas/${Session.get("userid")}/${date}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
 
   const [state, setState] = useState({
     vestatus: "",   

@@ -39,7 +39,7 @@ app.post('/ingresar', (request, response) => {
                     // return res.status(400).json({ errors: [{ password:"incorrect" }] 
                     // });
                 }
-                response.json({rol: user.data.rol})
+                response.json({rol: user.data.rol, userid: user.data._id})
             }).catch(err => {
                 console.log(err)
                 // user.status(500).json({ erros: err });
