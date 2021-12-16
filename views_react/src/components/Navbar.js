@@ -37,7 +37,7 @@ const Navbar = ({ history }) => {
             <NavLink className="nav-link" aria-current="page" to="/Reports" exact>Reportes</NavLink>
             </li>
             <li class="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/Schedule" exact>Mi Agenda</NavLink>
+            <NavLink className="nav-link" aria-current="page" to="/Agenda" exact>Mi Agenda</NavLink>
             </li>
           </ul>
  {/* <!-- /

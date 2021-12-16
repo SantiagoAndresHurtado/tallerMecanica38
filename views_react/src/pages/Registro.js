@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Session from 'react-session-api'
  
 const Registro = () => {
   const [state, setState] = useState({

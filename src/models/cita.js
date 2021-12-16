@@ -12,11 +12,11 @@ const citaSchema = mongoose.Schema({
         type:String,
         required:false
     },
-    servicio:{
+    idservicio:{
         type:String,
         required:false
     },
-    empleado:{
+    idcolaborador:{
         type:String,
         required:false
     },
