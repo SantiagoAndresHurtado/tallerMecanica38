@@ -17,7 +17,8 @@ class App extends Component{
         super(props);
         this.state={
             logueado: false,
-            userid: ""
+            userid: "",
+            rol: ""
         }
     }
 
@@ -25,7 +26,8 @@ class App extends Component{
         const logueado = (data) => {
           this.setState({ 
               logueado: data["logueado"],
-              userid: data["userid"]
+              userid: data["userid"],
+              rol: data["rol"]
             });
         };
         Session.onSet(logueado);
@@ -45,20 +47,62 @@ class App extends Component{
         );
     }
     renderApp(){
-        return(
-            <><BrowserRouter>
+        if (this.state.rol == "Administrador"){
+            return(
+                <><BrowserRouter>
+                    <Navbar />
+                    <div className="container mt-2" style={{ marginTop: 40 }}>
+                        <Routes>
+                            <Route exact path="/Registro" element={<Registro />} />
+                            <Route exact path="/Services" element={<Services />} />
+                            <Route exact path="/Reports" element={<Reports />} />
+                            <Route exact path="/Agenda" element={<Agenda />} />
+                            <Route path="*" element={<Error />} />
+                        </Routes>
+                    </div>
+                </BrowserRouter><Footer /></>
+            );
+        }
+        else if (this.state.rol == "Mecánico"){
+            return(
+                <><BrowserRouter>
+                    <Navbar />
+                    <div className="container mt-2" style={{ marginTop: 40 }}>
+                        <Routes>
+                            <Route exact path="/Agenda" element={<Agenda />} />
+                            <Route path="*" element={<Error />} />
+                        </Routes>
+                    </div>
+                </BrowserRouter><Footer /></>
+            );
+        }
+        else if (this.state.rol == "Recepcionista"){
+            return(
+                <><BrowserRouter>
+                    <Navbar />
+                    <div className="container mt-2" style={{ marginTop: 40 }}>
+                        <Routes>
+                            <Route exact path="/Registro" element={<Registro />} />
+                            <Route exact path="/Services" element={<Services />} />
+                            <Route path="*" element={<Error />} />
+                        </Routes>
+                    </div>
+                </BrowserRouter><Footer /></>
+            );
+        }
+        else{
+            return(
+                <><BrowserRouter>
                 <Navbar />
                 <div className="container mt-2" style={{ marginTop: 40 }}>
                     <Routes>
-                        <Route exact path="/Registro" element={<Registro />} />
-                        <Route exact path="/Services" element={<Services />} />
-                        <Route exact path="/Reports" element={<Reports />} />
-                        <Route exact path="/Agenda" element={<Agenda />} />
-                        <Route path="*" element={<Error />} />
+                        <Route exact path="/" element={<Home/>}/>
+                        <Route exact path="/Home" element={<Home/>}/>
                     </Routes>
                 </div>
             </BrowserRouter><Footer /></>
-        );
+            );
+        }
     }
     render(){
         if(this.state.logueado){
