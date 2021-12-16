@@ -62,14 +62,16 @@ const Home = ({state}) => {
                       <div className="card-header"><h3 className="text-center font-weight-light my-4">Iniciar Sesion</h3></div>
                       <div className="card-body">
                         <form onSubmit={handleSubmit}>
-                            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="name@example.com" value={credenciales.email} onChange={handleChange} />
-                            <br/>
-                            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" value={credenciales.password} onChange={handleChange} />
-                            <br/>
+                          <input type="email" name="email" class="form-control" id="inputEmail" placeholder="name@example.com" value={credenciales.email} onChange={handleChange} />
+                          <br/>
+                          <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" value={credenciales.password} onChange={handleChange} />
+                          <br/>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <a className="small" href="password.html">Forgot Password?</a>
+                            <a className="small" href="password.html">Forgot password? |</a>
+                            <a className="small" href="password.html">Forgot mail? | </a>
+                            <a className="small" href="password.html">Change password?</a> 
                             <input className="btn btn-primary" type="submit" value="Log in" />
-                          </div>
+                          </div> 
                         </form>
                       </div>
                     </div>

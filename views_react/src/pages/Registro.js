@@ -39,6 +39,7 @@ const Registro = () => {
 
   return (
         <div className="container">
+          <div id="layoutAuthentication_content">
             <div className="row justify-content-center">
                 <div className="col-lg-5">
                   <div className="card shadow-lg border-0 rounded-lg mt-5">
@@ -76,10 +77,18 @@ const Registro = () => {
                             </select>
 
                             <br />
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"/>
+                              <label class="form-check-label" for="flexCheckChecked">
+                              * Declaro haber leido y acepto las condiciones generales del
+                              programa y la normativa sobre protección de datos.
+                              </label>
+                            </div>
 
-                          <input className="btn btn-primary" type="submit" value="Guardar" />
+                          <input className="btn btn-primary" type="submit" value="Registrar" />
                           
                         </form>
+                        </div>
                         </div>
                         </div>
                         </div>
