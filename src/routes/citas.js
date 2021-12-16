@@ -19,14 +19,14 @@ router.get('/citas', (req, res) => {
     .catch((error) => res.json({message:error}))
 });
 
-//encontrar cita por id
-// router.get('/citas/:id', (req, res) => {
-//     const {id} = req.params;
-//     citaSchema
-//     .findById(id)
-//     .then((data) => res.json(data))
-//     .catch((error) => res.json({message:error}))
-// });
+// encontrar cita por id
+router.get('/citas/:id', (req, res) => {
+    const {id} = req.params;
+    citaSchema
+    .findById(id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({message:error}))
+});
 
 //encontrar cita por un idcolaborador y fecha
 router.get('/citas/:idcolaborador/:fecha', (req, res) => {

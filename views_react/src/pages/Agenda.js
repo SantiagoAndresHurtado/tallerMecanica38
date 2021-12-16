@@ -1,19 +1,100 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Session from 'react-session-api'
  
 const Agenda = () => {
-  let today = new Date();
-  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const [form, setForm] = useState({
+    "servicio": "servicio",   
+    "fecha": "fecha",
+    "hora": "hora",
+    "duracion": "duracion",
+    "placa": "placa",
+    "precio": "precio",
+    "descripcion": "descripcion",
+  })
 
-  let obj;
-  
-  fetch(`http://localhost:9000/api/citas/${Session.get("userid")}/${date}`)
-  .then(response => response.json())
-  .then(data => obj = data)
-  .then(() => console.log(obj))
-  
-  console.log("++++++++++++++++++++")
-  console.log(obj)
+  const actualizarDetalle = (event) => {
+    fetch(`http://localhost:9000/detallecita/${idcita[event.target.id]}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setForm({
+        ...form, 
+        servicio: data.idservicio,
+        fecha: data.fecha,
+        hora: data.hora,
+        duracion: "consulta",
+        placa: data.placa,
+        precio: "consulta",
+        descripcion: "consulta"
+      });
+    })
+    .catch(error => console.log(error));
+    // setState({
+    //   ...form,
+    //   [event.target.name]: event.target.value
+    // })
+    console.log("HOLA")
+}
+
+  const [idcita, setidcita] = useState({
+    "9:00": "",   
+    "9:30": "",
+    "10:00": "",
+    "10:30": "",
+    "11:00": "",
+    "11:30": "",
+    "12:00": "",
+    "12:30": "",
+    "13:00": "",
+    "13:30": "",
+    "14:00": "",
+    "14:30": "",
+    "15:00": "",
+    "15:30": "",
+    "16:00": "",
+    "16:30": "",
+    "17:00": "",
+  })
+
+
+  const [actividad, setActividad] = useState({
+    "9:00": "Disponible",   
+    "9:30": "Disponible",
+    "10:00": "Disponible",
+    "10:30": "Disponible",
+    "11:00": "Disponible",
+    "11:30": "Disponible",
+    "12:00": "Disponible",
+    "12:30": "Disponible",
+    "13:00": "Disponible",
+    "13:30": "Disponible",
+    "14:00": "Disponible",
+    "14:30": "Disponible",
+    "15:00": "Disponible",
+    "15:30": "Disponible",
+    "16:00": "Disponible",
+    "16:30": "Disponible",
+    "17:00": "Disponible",
+  })
+ 
+  useEffect(() => {
+    fetch(`http://localhost:9000/agendadia/${Session.get("userid")}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log("--------------------");
+      console.log(data);
+      let hora = {...actividad}
+      let identificacion = {...idcita}
+      for (let i=0; i<data.length; i++){
+        hora[data[i].hora]= data[i].idservicio;
+        identificacion[data[i].hora]=data[i]._id;
+      }
+      setActividad(hora);
+      setidcita(identificacion);
+    })
+    .catch(error => console.log(error));
+  }, []);
+
   const [state, setState] = useState({
     vestatus: "",   
     comment: ""
@@ -69,19 +150,19 @@ const Agenda = () => {
                   <option value="llantas">Rotación de Llantas</option>
                   <option value="alineacion">Alineación</option>
                 </select> */}
-                <input type="text" name="service" class="form-control" id="floatingInput" placeholder="Servicio seleccionado" disabled />
+                <input type="text" name="servicio" class="form-control" id="floatingInput" value={form.servicio} disabled />
                 <br/>
-                <input type="text" name="date" class="form-control" id="floatingInput" placeholder="Fecha del servicio seleccionado" disabled value={prueba.inicial}/> 
+                <input type="text" name="fecha" class="form-control" id="floatingInput" value={form.fecha} disabled/> 
                 <br/>
-                <input type="text" name="time" class="form-control" id="floatingInput" placeholder="Hora del servicio seleccionado" disabled />
+                <input type="text" name="hora" class="form-control" id="floatingInput" value={form.hora} disabled />
                 <br/>
-                <input type="text" name="term" class="form-control" id="floatingInput" placeholder="Duracion del servicio seleccionado" disabled />
+                <input type="text" name="duracion" class="form-control" id="floatingInput" value={form.duracion} disabled />
                 <br/>
-                <input type="text" name="plate" class="form-control" id="floatingInput" placeholder="Placa del vehículo" disabled  />                 
+                <input type="text" name="placa" class="form-control" id="floatingInput" value={form.placa} disabled  />                 
                 <br/>
-                <input type="text" name="price" class="form-control" id="floatingInput" placeholder="Precio del servicio" disabled />
+                <input type="text" name="precio" class="form-control" id="floatingInput" value={form.precio} disabled />
                 <br/>
-                <textarea class="form-control" name="description" id="floatingInput" rows="3" placeholder="Descripción del servicio" disabled ></textarea>
+                <textarea class="form-control" name="descripcion" id="floatingInput" rows="3" value={form.descripcion} disabled ></textarea>
                 <br />
                 
                   <textarea class="form-control" name="comment" id="floatingInput" rows="3" placeholder="Comentarios del servicio" value={state.comment} onChange={handleChange}></textarea>
@@ -111,72 +192,72 @@ const Agenda = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">9:00</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                      <th id="9:00" scope="row" onClick={actualizarDetalle}>9:00</th>
+                      <td id="9:00" name="9:00" style={{backgroundColor:'lightgreen'}} onClick={actualizarDetalle}>{actividad["9:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">9:30</th>
-                      <td>Llantas</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="9:30"scope="row">9:30</th>
+                      <td id="9:30">{actividad["9:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">10:00</th>
-                      <td>Amortiguadores</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="10:00"scope="row">10:00</th>
+                      <td id="10:00">{actividad["10:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">10:30</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="10:30" scope="row">10:30</th>
+                      <td id="10:30" style={{backgroundColor:'lightgreen'}}>{actividad["10:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">11:00</th>
-                      <td>Amortiguadores</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="11:00" scope="row">11:00</th>
+                      <td id="11:00">{actividad["11:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">11:30</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="11:30" scope="row">11:30</th>
+                      <td id="11:30" style={{backgroundColor:'lightgreen'}}>{actividad["11:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">12:00</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="12:00" scope="row">12:00</th>
+                      <td id="12:00" style={{backgroundColor:'lightgreen'}}>{actividad["12:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">12:30</th>
-                      <td>Pastillas</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="12:30" scope="row">12:30</th>
+                      <td id="12:30">{actividad["12:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">13:00</th>
-                      <td>Discos</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="13:00" scope="row">13:00</th>
+                      <td id="13:00">{actividad["13:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">13:30</th>
-                      <td>Discos</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="13:30" scope="row">13:30</th>
+                      <td id="13:00">{actividad["13:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">14:00</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="14:00" scope="row">14:00</th>
+                      <td id="14:00" style={{backgroundColor:'lightgreen'}}>{actividad["14:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">14:30</th>
-                      <td>Pastillas</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="14:30" scope="row">14:30</th>
+                      <td id="14:00">{actividad["14:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">15:00</th>
-                      <td>Discos</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="15:00" scope="row">15:00</th>
+                      <td id="15:00">{actividad["15:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">15:30</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="15:30" scope="row">15:30</th>
+                      <td id="15:30"style={{backgroundColor:'lightgreen'}}>{actividad["15:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">16:00</th>
-                      <td>Aceite</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="16:00" scope="row">16:00</th>
+                      <td id="16:00">{actividad["16:00"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">16:30</th>
-                      <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="16:30" scope="row">16:30</th>
+                      <td id="16:30" style={{backgroundColor:'lightgreen'}}>{actividad["16:30"]}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">17:00</th>
-                      <td>Llantas</td>
+                    <tr onClick={actualizarDetalle}>
+                      <th id="17:00" scope="row">17:00</th>
+                      <td id="17:00">{actividad["17:00"]}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -185,10 +266,6 @@ const Agenda = () => {
         </div>
       </div>
     </div>
-      
-
-                        
-
   );
 }
 

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const citaSchema = mongoose.Schema({
     fecha:{
-        type:Date,
+        type:String,
         required:false
     },
     hora:{
