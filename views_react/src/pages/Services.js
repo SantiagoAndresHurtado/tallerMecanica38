@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Form from "react-bootstrap/Form";
  
 const Services = () => {
   const [state, setState] = useState({
@@ -61,12 +62,12 @@ const Services = () => {
                             </select>
 
                           <br/>
+                          
+                          <Form.Control type="date" name='date' placeholder="Seleccione fecha"  value={state.date} onChange={handleChange}/>
 
-                          <input type="text" name="date" class="form-control" id="floatingInput" placeholder="Seleccione fecha" value={state.date} onChange={handleChange}/>                      
+                          <br/>                          
 
-                          <br/>
-
-                          <input type="text" name="time" class="form-control" id="floatingInput" placeholder="Seleccione hora" value={state.time} onChange={handleChange}/>                      
+                          <Form.Control type="time" name='time' placeholder="Seleccione fecha"  value={state.time} onChange={handleChange}/>
 
                           <br/>
 

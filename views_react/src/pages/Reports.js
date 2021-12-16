@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Form from "react-bootstrap/Form";
  
 const Reports = () => {
   const [state, setState] = useState({
@@ -17,9 +18,8 @@ const Reports = () => {
 
   const handleSubmit = (event) => {
         alert('Sus datos se han guardado exitosamente');
-        event.preventDefault();
-     
-        fetch('http://localhost:9000/Reports', {
+        event.preventDefault();     
+        fetch('http://localhost:9000/consultareportes', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -27,29 +27,32 @@ const Reports = () => {
           },
           // We convert the React state to JSON and send it as the POST body
           body: JSON.stringify(state)
-        }).then(function(response) {
-          return response.json();
-        });
+        }).then(response => response.json())
+          .then(data => console.log(data));
       }
 
   return (
         <div className="container">
             <div className="row g-3">
-            <div className="card-header"><h1 className="text-center font-weight-light my-4"> Generar Reportes</h1></div>
+            <div className="card-header">
+              <h1 className="text-center font-weight-light my-4"> Generar Reportes</h1>
+            </div>
                 <div className="col-lg-5">
                   <div className="card shadow-lg border-0 rounded-lg mt-5">
                     <div className="card-body">
-                    <div className="card-header"><h3 className="text-center font-weight-light my-4">Consultas</h3></div>
+                    <div className="card-header">
+                      <h3 className="text-center font-weight-light my-4">Consultas</h3>
+                    </div>
                         <div class="form-floating mb-3">
                         <form onSubmit={handleSubmit}>
                             
                           <br/>
-
-                          <input type="text" name="date" class="form-control" id="floatingInput" placeholder="Seleccione fecha inicial" value={state.fechainicial} onChange={handleChange}/>                      
+                          <Form.Control type="date" name='fechainicial' placeholder="Seleccione fecha"  value={state.fechainicial} onChange={handleChange}/>
+                          {/*<Form.control type="text" name="fechainicial" class="form-control" id="floatingInput" placeholder="Seleccione fecha inicial" value={state.fechainicial} onChange={handleChange}/>*/}
 
                           <br/>
 
-                          <input type="text" name="date" class="form-control" id="floatingInput" placeholder="Seleccione fecha final" value={state.fechafinal} onChange={handleChange}/>                      
+                          <Form.Control type="date" name="fechafinal" placeholder="Seleccione fecha final" value={state.fechafinal} onChange={handleChange}/>                      
 
                           <br/>
 

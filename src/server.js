@@ -17,6 +17,8 @@ app.listen(PORT, () => console.log("server listening on port", PORT));
 
 const client = axios.create({baseURL: "http://localhost:9000/api/"});
 
+//const citas = axios.create({baseURL: "http://localhost:9000/citasagendadas/"});
+
 
 app.post('/ingresar', (request, response) => {
     let password = request.body.password;
@@ -115,6 +117,15 @@ app.post('/crearUsuario', (req, res) => {
   })
 });
 
+app.post('/consultareportes',(req,res) => {
+    let fechainicial = req.body.fechainicial;
+    let fechafinal = req.body.fechafinal;
+    console.log(fechainicial,fechafinal);
+    client
+    .get('citas')
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+})
 
 // API para la base de datos
 connect(process.env.MONGODB_URI)
