@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Session from 'react-session-api'
 import "../style.css";
 
 const Navbar = ({ history }) => {
@@ -17,112 +18,96 @@ const Navbar = ({ history }) => {
     history.push("/");
   };
 
-  return (
-    <div className="bg-primary">
-      
-      <header id="header">
-        <div className="container">
-        <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/Registro" exact>Registro</NavLink>
-            </li>
-            <li class="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/Services" exact>Programar Servicios</NavLink>
-            </li>
-          </ul>
-        
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/Reports" exact>Reportes</NavLink>
-            </li>
-            <li class="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/Agenda" exact>Mi Agenda</NavLink>
-            </li>
-          </ul>
- {/* <!-- /
+  if (Session.get("rol") == "Administrador"){
+    return (
+      <div className="bg-primary">   
+        <header id="header">
+          <div className="container">
           <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
-          <div className="menu-trigger"></div>
-          <nav id="menu">
+          <ul class="nav nav-pills">
+              <li class="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/Registro" exact>Registro</NavLink>
+              </li>
+              <li class="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/Services" exact>Programar Servicios</NavLink>
+              </li>
+            </ul>
+          
+          <ul class="nav nav-pills">
+              <li class="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/Reports" exact>Reportes</NavLink>
+              </li>
+              <li class="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/Agenda" exact>Mi Agenda</NavLink>
+              </li>
+            </ul>
+          </div>
+        </header>
+      </div>
+    )
+  }
+  else if (Session.get("rol") == "Mecánico") {
+    return (
+      <div className="bg-primary">   
+        <header id="header">
+          <div className="container">
+            <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
+            <ul class="nav nav-pills">
+              <li class="nav-item"></li>
+                <NavLink className="nav-link" aria-current="page" to="/Agenda" exact>Mi Agenda</NavLink>
+              <li class="nav-item"></li>
+            </ul>
+            <ul class="nav nav-pills">
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+          </div>
+        </header>
+      </div>
+    )
+  }
+  else if (Session.get("rol") == "Recepcionista"){
+    return (
+      <div className="bg-primary">   
+        <header id="header">
+          <div className="container">
+          <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/Registro" exact>Registro</NavLink>
+              </li>
+              <li class="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/Services" exact>Programar Servicios</NavLink>
+              </li>
+            </ul>
+            <ul class="nav nav-pills">
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+            </ul>
+          </div>
+        </header>
+      </div>
+    )
+  }
+  else{
+    return (
+      <div className="bg-primary">   
+        <header id="header">
+          <div className="container">
+            <a id="logo" title="Taller Mecanico La 38">TallerLa38</a>
             <ul>
-              <NavLink className="navbar-item" activeClassName="is-active" to="/Users" exact>
-                Equipo
-              </NavLink>
-              <NavLink className="navbar-item" activeClassName="is-active" to="/Services" exact>
-                Servicios
-              </NavLink>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
             </ul>
             <ul>
-              <NavLink className="navbar-item" activeClassName="is-active" to="/Reports" exact>
-                Reportes
-              </NavLink>
-              <NavLink className="navbar-item" activeClassName="is-active" to="/Schedule" exact>
-                Agenda
-              </NavLink>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
             </ul>
-          </nav>
-          {/* <!-- / navigation--> */}
-        </div>
-        {/* <!-- / container--> */}
-
-      </header>
-    </div>
-  )
-  // return (
-  //   <nav
-  //     className="navbar is-primary"
-  //     role="navigation"
-  //     aria-label="main navigation"
-  //   >
-  //     <div className="container">
-  //       <div className="navbar-brand">
-  //         <a
-  //           role="button"
-  //           className={`navbar-burger burger ${isOpen && "is-active"}`}
-  //           aria-label="menu"
-  //           aria-expanded="false"
-  //           onClick={() => setOpen(!isOpen)}
-  //         >
-  //           <span aria-hidden="true"></span>
-  //           <span aria-hidden="true"></span>
-  //           <span aria-hidden="true"></span>
-  //         </a>
-  //       </div>
-
-  //       <div className={`navbar-menu ${isOpen && "is-active"}`}>
-  //         <div className="navbar-start">
-  //           <NavLink className="navbar-item" activeClassName="is-active" to="/" exact>
-  //             Home
-  //           </NavLink>
-
-  //           <NavLink className="navbar-item" activeClassName="is-active" to="/about">
-  //             About
-  //           </NavLink>
-
-  //           <NavLink className="navbar-item" activeClassName="is-active" to="/profile/Vijit" >
-  //             Profile
-  //           </NavLink>
-  //         </div>
-
-  //         <div className="navbar-end">
-  //           <div className="navbar-item">
-  //             <div className="buttons">
-  //               {!isAuth ? (
-  //                 <button className="button is-white" onClick={loginUser}>
-  //                   Log in
-  //                 </button>
-  //               ) : (
-  //                 <button className="button is-black" onClick={logoutUser}>
-  //                   Log out
-  //                 </button>
-  //               )}
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </nav>
-  // );
+          </div>
+        </header>
+      </div>
+    )
+  }
 };
 
 export default Navbar;

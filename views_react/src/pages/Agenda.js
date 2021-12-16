@@ -4,12 +4,16 @@ import Session from 'react-session-api'
 const Agenda = () => {
   let today = new Date();
   let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  let initialData;
-  console.log(Session.get("userid"))
+
+  let obj;
+  
   fetch(`http://localhost:9000/api/citas/${Session.get("userid")}/${date}`)
   .then(response => response.json())
-  .then(data => console.log(data))
-
+  .then(data => obj = data)
+  .then(() => console.log(obj))
+  
+  console.log("++++++++++++++++++++")
+  console.log(obj)
   const [state, setState] = useState({
     vestatus: "",   
     comment: ""

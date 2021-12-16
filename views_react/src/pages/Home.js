@@ -29,23 +29,23 @@ const Home = ({state}) => {
       })
       .then(response => response.json())
       .then(json => {
+        console.log(json)
+        Session.set("logueado", true);
+        Session.set("userid", json.userid)
+        Session.set("rol", json.rol)
         if (json.rol == "Administrador") {
-          console.log(json.userid)
-          Session.set("logueado", true);
-          Session.set("userid", json.userid)
           navigate("/Reports")
         }
         else if (json.rol == "Mecánico") {
-          Session.set("logueado", true);
-          Session.set("userid", json.userid)
-          navigate("/Schedule")
+          navigate("/Agenda")
         }
         else if (json.rol == "Recepcionista") {
-          Session.set("logueado", true);
-          Session.set("userid", json.userid)
           navigate("/Services")
         }
-        else console.log("Usuario o contraseña incorrectos");
+        else {
+          Session.set("logueado", false);
+          console.log("Usuario o contraseña incorrectos");
+        }
       })
       .catch(err => console.error(err));
   }
@@ -68,7 +68,7 @@ const Home = ({state}) => {
                             <br/>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                             <a className="small" href="password.html">Forgot Password?</a>
-                            <input className="btn btn-primary" type="submit" value="Guardar" />
+                            <input className="btn btn-primary" type="submit" value="Log in" />
                           </div>
                         </form>
                       </div>
