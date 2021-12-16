@@ -1,17 +1,18 @@
 import React, {useCallback, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import Session from 'react-session-api'
 import "../style.css";
 
-const Home = () => {
+const Home = ({state}) => {
   const navigate = useNavigate();
-  const [state, setState] = useState({
+  const [credenciales, setCredenciales] = useState({
     email: "",
     password: ""
   })
 
   const handleChange = (event) => {
-    setState({
-      ...state,
+    setCredenciales({
+      ...credenciales,
       [event.target.name]: event.target.value
     })
   }
@@ -23,14 +24,27 @@ const Home = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        // We convert the React state to JSON and send it as the POST body
-        body: JSON.stringify(state)
+        // We convert the React credenciales to JSON and send it as the POST body
+        body: JSON.stringify(credenciales)
       })
       .then(response => response.json())
       .then(json => {
-        if (json.rol == "Administrador") navigate("/Reports");
-        else if (json.rol == "Mecánico") navigate("/Schedule");
-        else if (json.rol == "Recepcionista") navigate("/Services");
+        if (json.rol == "Administrador") {
+          console.log(json.userid)
+          Session.set("logueado", true);
+          Session.set("userid", json.userid)
+          navigate("/Reports")
+        }
+        else if (json.rol == "Mecánico") {
+          Session.set("logueado", true);
+          Session.set("userid", json.userid)
+          navigate("/Schedule")
+        }
+        else if (json.rol == "Recepcionista") {
+          Session.set("logueado", true);
+          Session.set("userid", json.userid)
+          navigate("/Services")
+        }
         else console.log("Usuario o contraseña incorrectos");
       })
       .catch(err => console.error(err));
@@ -48,9 +62,9 @@ const Home = () => {
                       <div className="card-header"><h3 className="text-center font-weight-light my-4">Iniciar Sesion</h3></div>
                       <div className="card-body">
                         <form onSubmit={handleSubmit}>
-                            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="name@example.com" value={state.email} onChange={handleChange} />
+                            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="name@example.com" value={credenciales.email} onChange={handleChange} />
                             <br/>
-                            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" value={state.password} onChange={handleChange} />
+                            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" value={credenciales.password} onChange={handleChange} />
                             <br/>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                             <a className="small" href="password.html">Forgot Password?</a>

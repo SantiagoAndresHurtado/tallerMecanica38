@@ -28,11 +28,12 @@ router.get('/citas', (req, res) => {
 //     .catch((error) => res.json({message:error}))
 // });
 
-//encontrar cita por fecha
-router.get('/citas/:fecha', (req, res) => {
-    const fecha = req.params;
+//encontrar cita por un idcolaborador y fecha
+router.get('/citas/:idcolaborador/:fecha', (req, res) => {
+    const params = req.params;
+    console.log(params)
     citaSchema
-    .find(fecha)
+    .find(params)
     .then((data) => res.json(data))
     .catch((error) => res.json({message:error}))
 });
