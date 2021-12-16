@@ -17,9 +17,7 @@ app.listen(PORT, () => console.log("server listening on port", PORT));
 
 const client = axios.create({baseURL: "http://localhost:9000/api/"});
 
-//const citas = axios.create({baseURL: "http://localhost:9000/citasagendadas/"});
-
-
+// HOME -------------------------------------------------------------------
 app.post('/ingresar', (request, response) => {
     let password = request.body.password;
     client          
@@ -54,23 +52,37 @@ app.get('/', (req, res) => {
     res.send("Here is the login");
 });
 
+// AGENDA -------------------------------------------------------------------
+app.get('/agendadia/:id', (req, res) => {
+    let {id} = req.params
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    client
+    .get(`citas/${id}/${date}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
+app.get('/detallecita/:id', (req, res) => {
+    let {id} = req.params
+    client
+    .get(`citas/${id}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
 app.post('/actualizacioncitas', (req, res) => {
     client
     .put('citas/61b91047f0cb0da089dd3d28', {
         "estadoVehiculo":req.body.vestatus,
         "comentario":req.body.comment
-
     })
-    .then((res) => {
-        console.log(`statusCode: ${res.status}`)
-    })
-    .catch(err =>{
-        console.error(err)
-    });
-    
-    console.log(req.body)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
 });
 
+
+// REGISTRO -------------------------------------------------------------------
 app.post('/crearUsuario', (req, res) => {
     let nombres = req.body.name;
     let apellidos =  req.body.lastname;
@@ -117,7 +129,9 @@ app.post('/crearUsuario', (req, res) => {
   })
 });
 
-app.post('/consultareportes',(req,res) => {
+
+// REPORTES -------------------------------------------------------------------
+app.post('/consultareportes', (req,res) => {
     let fechainicial = req.body.fechainicial;
     let fechafinal = req.body.fechafinal;
     console.log(fechainicial,fechafinal);
@@ -126,6 +140,7 @@ app.post('/consultareportes',(req,res) => {
     .then((ans) => res.json(ans.data))
     .catch((error) => res.json({message:error}))
 })
+
 
 // API para la base de datos
 connect(process.env.MONGODB_URI)

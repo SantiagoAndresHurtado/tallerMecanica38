@@ -29,7 +29,6 @@ const Home = ({state}) => {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         Session.set("logueado", true);
         Session.set("userid", json.userid)
         Session.set("rol", json.rol)
