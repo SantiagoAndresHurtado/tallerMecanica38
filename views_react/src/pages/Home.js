@@ -50,7 +50,7 @@ const Home = ({state}) => {
   }
 
   return(
-    
+    <div className="bg-primary">
         <div id="layoutAuthentication">
           <div id="layoutAuthentication_content">
             <main>
@@ -80,7 +80,7 @@ const Home = ({state}) => {
             </main>
           </div>
         </div>
-     
+      </div>
   )
 };
 
