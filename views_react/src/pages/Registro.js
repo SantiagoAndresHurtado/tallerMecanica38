@@ -44,6 +44,7 @@ const Registro = () => {
 
   return (
         <div className="container">
+         <div id="layoutAuthentication">
           <div id="layoutAuthentication_content">
             <div className="row justify-content-center">
                 <div className="col-lg-5">
@@ -93,6 +94,7 @@ const Registro = () => {
                           <input className="btn btn-primary" type="submit" value="Registrar" />
                           
                         </form>
+                        </div>
                         </div>
                         </div>
                         </div>
