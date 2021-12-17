@@ -84,7 +84,7 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  background-image: url(background.png);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -4051,8 +4051,9 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
+  padding-top: 0.0rem;
   padding-bottom: 0.5rem;
+  background-color: #191c1f;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -4065,6 +4066,7 @@ textarea.form-control-lg {
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
+  background-color: #191c1f;
 }
 .navbar-brand {
   padding-top: 0.3125rem;
@@ -4301,6 +4303,7 @@ textarea.form-control-lg {
   .navbar-expand-xl {
     flex-wrap: nowrap;
     justify-content: flex-start;
+    background-color: #191c1f;
   }
   .navbar-expand-xl .navbar-nav {
     flex-direction: row;
@@ -4517,7 +4520,7 @@ textarea.form-control-lg {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navbar-dark .navbar-text {
-  color: rgba(255, 255, 255, 0.55);
+  color: orangered;
 }
 .navbar-dark .navbar-text a,
 .navbar-dark .navbar-text a:hover,
@@ -7327,7 +7330,7 @@ textarea.form-control-lg {
 }
 
 .mt-2 {
-  margin-top: 0.5rem !important;
+  margin-top: 0.0rem !important;
 }
 
 .mt-3 {
@@ -7826,7 +7829,7 @@ textarea.form-control-lg {
 
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color:#191c1f;
+  background-color:#101214;
 }
 
 .bg-secondary {
@@ -7861,7 +7864,7 @@ textarea.form-control-lg {
 
 .bg-dark {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  background-color: #191c1f;
 }
 
 .bg-black {
@@ -11314,13 +11317,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #0c4128;
+
 }
 #layoutAuthentication #layoutAuthentication_content {
   min-width: 0;
   flex-grow: 1;
-  background-image: url(https://st.depositphotos.com/1011833/1456/i/950/depositphotos_14564283-stock-photo-many-old-rusty-metal-gears.jpg);
-  background-color:#1c1f23;
+  
 }
 #layoutAuthentication #layoutAuthentication_footer {
   min-width: 0;
@@ -11431,7 +11433,8 @@ body {
 }
 .sb-topnav .navbar-brand {
   width: 225px;
-  margin: 0;
+  margin: 0%;
+  padding-left: 10%;
 }
 .sb-topnav.navbar-dark #sidebarToggle {
   color: rgba(255, 255, 255, 0.5);
