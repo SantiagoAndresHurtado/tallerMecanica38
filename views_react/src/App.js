@@ -56,7 +56,6 @@ class App extends Component{
                             <Route exact path="/Registro" element={<Registro />} />
                             <Route exact path="/Services" element={<Services />} />
                             <Route exact path="/Reports" element={<Reports />} />
-                            <Route exact path="/Agenda" element={<Agenda />} />
                             <Route path="*" element={<Error />} />
                         </Routes>
                     </div>
@@ -98,6 +97,7 @@ class App extends Component{
                     <Routes>
                         <Route exact path="/" element={<Home/>}/>
                         <Route exact path="/Home" element={<Home/>}/>
+                        <Route path="*" element={<Error />} />
                     </Routes>
                 </div>
             </BrowserRouter><Footer /></>

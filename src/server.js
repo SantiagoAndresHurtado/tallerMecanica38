@@ -71,9 +71,17 @@ app.get('/detallecita/:id', (req, res) => {
     .catch((error) => res.json({message:error}))
 });
 
+app.get('/detalleservicio/:id', (req, res) => {
+    let {id} = req.params
+    client
+    .get(`servicios/${id}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
 app.post('/actualizacioncitas', (req, res) => {
     client
-    .put('citas/61b91047f0cb0da089dd3d28', {
+    .put(`citas/${req.body.idcita}`, {
         "estadoVehiculo":req.body.vestatus,
         "comentario":req.body.comment
     })

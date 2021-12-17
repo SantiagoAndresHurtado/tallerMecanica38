@@ -13,30 +13,34 @@ const Agenda = () => {
   })
 
   const actualizarDetalle = (event) => {
-    fetch(`http://localhost:9000/detallecita/${idcita[event.target.id]}`)
+    setState({
+      ...state, 
+      idcita: idcitas[event.target.id]
+    });
+    fetch(`http://localhost:9000/detallecita/${idcitas[event.target.id]}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data)
-      setForm({
-        ...form, 
-        servicio: data.idservicio,
-        fecha: data.fecha,
-        hora: data.hora,
-        duracion: "consulta",
-        placa: data.placa,
-        precio: "consulta",
-        descripcion: "consulta"
-      });
+      fetch(`http://localhost:9000/detalleservicio/${data.idservicio}`)
+      .then(response => response.json())
+      .then(ser => {
+        setForm({
+          ...form, 
+          servicio: ser.nombre,
+          fecha: data.fecha,
+          hora: data.hora,
+          duracion: ser["duración"],
+          placa: data.placa,
+          precio: ser.costo,
+          descripcion: ser["descripción"]
+        })
+
+      })
+      .catch(error => console.log(error));
     })
     .catch(error => console.log(error));
-    // setState({
-    //   ...form,
-    //   [event.target.name]: event.target.value
-    // })
-    console.log("HOLA")
 }
 
-  const [idcita, setidcita] = useState({
+  const [idcitas, setidcitas] = useState({
     "9:00": "",   
     "9:30": "",
     "10:00": "",
@@ -81,30 +85,25 @@ const Agenda = () => {
     fetch(`http://localhost:9000/agendadia/${Session.get("userid")}`)
     .then(response => response.json())
     .then(data => {
-      console.log("--------------------");
-      console.log(data);
       let hora = {...actividad}
-      let identificacion = {...idcita}
+      let identificacion = {...idcitas}
       for (let i=0; i<data.length; i++){
         hora[data[i].hora]= data[i].idservicio;
         identificacion[data[i].hora]=data[i]._id;
       }
       setActividad(hora);
-      setidcita(identificacion);
+      setidcitas(identificacion);
     })
     .catch(error => console.log(error));
   }, []);
 
   const [state, setState] = useState({
-    vestatus: "",   
-    comment: ""
+    vestatus: "",
+    comment: "",
+    idcita: ""
   })
   const prueba = {"fecha":"2021-12-11","hora":"9"}
   const prueba2 = {"fecha":"2021-02-12","hora":"9"}
-
-  const mostrar = (event) => {
-    
-  }
 
   const handleChange = (event) => {
       setState({
@@ -114,9 +113,8 @@ const Agenda = () => {
   }
 
   const handleSubmit = (event) => {
-    alert('Sus datos se han guardado exitosamente');
     event.preventDefault();
-  
+    
     fetch('http://localhost:9000/actualizacioncitas', {
       method: 'POST',
       headers: {
@@ -125,8 +123,14 @@ const Agenda = () => {
       },
       // We convert the React state to JSON and send it as the POST body
       body: JSON.stringify(state)
-    }).then(function(response) {
-      return response.json();
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('Sus datos se han guardado exitosamente')
+      setState({
+        vestatus: "",
+        comment: ""
+      })
     });
   }
 
@@ -169,8 +173,8 @@ const Agenda = () => {
                   <br />
                   <select class="form-select" aria-label="Estado" name="vestatus" value={state.vestatus} onChange={handleChange}>
                     <option selected>Seleccione estado del vehículo</option>
-                    <option value="frenos">En reparación</option>
-                    <option value="frenos">Reparado</option>
+                    <option value="En reparación">En reparación</option>
+                    <option value="Reparado">Reparado</option>
                   </select>
                   <br />
                   <input className="btn btn-primary" type="submit" value="Servicio Completado" />

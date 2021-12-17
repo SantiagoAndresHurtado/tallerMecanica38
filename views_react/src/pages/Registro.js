@@ -12,15 +12,14 @@ const Registro = () => {
   })
 
   const handleChange = (event) => {
-      setState({
-        ...state,
-        [event.target.name]: event.target.value
-      })
-    }
+    setState({
+      ...state,
+      [event.target.name]: event.target.value
+    })
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
-    alert('Sus datos se han guardado exitosamente');
+    event.preventDefault();
     fetch('http://localhost:9000/crearUsuario', {
       method: 'POST',
       headers: {
@@ -30,11 +29,17 @@ const Registro = () => {
       body: JSON.stringify(state)
     })
     .then((res) => {
-      return res.json();
+      alert('Sus datos se han guardado exitosamente');
+      setState({
+        name: "",
+        lastname: "",
+        id: "",
+        email: "",
+        password: "",
+        role: "",
+      })
     })
-    .catch(error =>{
-      console.error(error);
-    })
+    .catch(error => console.error(error))
   }
 
   return (
@@ -78,7 +83,7 @@ const Registro = () => {
 
                             <br />
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"/>
+                              <input name="approve" type="checkbox" checked="true" class="form-check-input" id="flexCheckChecked"/>
                               <label class="form-check-label" for="flexCheckChecked">
                               * Declaro haber leido y acepto las condiciones generales del
                               programa y la normativa sobre protección de datos.

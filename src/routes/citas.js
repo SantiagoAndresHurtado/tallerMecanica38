@@ -46,8 +46,6 @@ router.put('/citas/:id', (req, res) => {
     .updateOne({_id:id}, {$set: {estadoVehiculo, comentario}})
     .then((data) => res.json(data))
     .catch((error) => res.json({message:error}))
-    console.log("$$")
-    console.log(req.body)
 });
 
 //borrar cita
