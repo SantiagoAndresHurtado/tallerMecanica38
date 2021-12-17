@@ -239,12 +239,133 @@ const Services = () => {
             </div>
             </div>
             </div>
+          </div>
+        </div>
+        <div className="col-sm">
+          <div className="card shadow-lg border-0 rounded-lg mt-5">
+            <div className="card-body">
+              <div className="card-header"><h3 className="text-center font-weight-light my-4">Disponibilidad de Mecánicos</h3></div>
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Hora</th>
+                    <th scope="col">mecanico1 </th>
+                    <th scope="col">mecanico2</th>
+                    <th scope="col">mecanico3</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">9:00</th>
+                    <td >Aceite</td>
+                    <td>Frenos</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">9:30</th>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td>Llantas</td>
+                    <td>Alineación</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10:00</th>
+                    <td>Suspensión</td>
+                    <td>Discos</td>
+                    <td>Amortiguadores</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10:30</th>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td>Amortiguadores</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">11:00</th>
+                    <td>Discos</td>
+                    <td>Amortiguadores</td>
+                    <td>Amortiguadores</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">11:30</th>
+                    <td>Amortiguadores</td>
+                    <td>Discos</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">12:00</th>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td>Aceite</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">12:30</th>
+                    <td>Pastillas</td>
+                    <td>Amortiguadores</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">13:00</th>
+                    <td>Amortiguadores</td>
+                    <td>Discos</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">13:30</th>
+                    <td>Pastillas</td>
+                    <td>Amortiguadores</td>
+                    <td>Discos</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">14:00</th>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td>Aceite</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">14:30</th>
+                    <td>Pastillas</td>
+                    <td>Alineación</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">15:00</th>
+                    <td>Discos</td>
+                    <td>Llantas</td>
+                    <td>Aceite</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">15:30</th>
+                    <td>Pastillas</td>
+                    <td>Llantas</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">16:00</th>
+                    <td>Pastillas</td>
+                    <td>Aceite</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">16:30</th>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td>Amortiguadores</td>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">17:00</th>
+                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                    <td>Llantas</td>
+                    <td>Discos</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
-                        
+          </div>
+        </div>
+      </div>
+    </div>                 
 
   );
 }
  
-
 export default Services;
