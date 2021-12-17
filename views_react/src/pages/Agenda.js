@@ -137,8 +137,7 @@ const Agenda = () => {
   return (
     <div className="container">
       <div className="row g-3">
-        <div className="card shadow-lg border-0 rounded-lg mt-5">
-          <h1 className="text-center font-weight-light my-4">Gestion de Servicios</h1></div>
+        <div className="card-header"><h3 className="text-center font-weight-light my-4">Gestion de Servicios</h3></div>
         <div className="col-lg-5">
           <div className="card shadow-lg border-0 rounded-lg mt-5">
             <div className="card-body">
