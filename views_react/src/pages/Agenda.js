@@ -142,33 +142,21 @@ const Agenda = () => {
           <div className="card shadow-lg border-0 rounded-lg mt-5">
             <div className="card-body">
               <div class="form-floating mb-3">
-              <form onSubmit={handleSubmit}>
-                {/* <select class="form-select" aria-label="Servicios" name="service" disabled value={state.service} onChange={handleChange}>
-                  <option selected>Servicio Seleccionado</option>
-                  <option value="frenos">Revisión de Frenos</option>
-                  <option value="pastillas">Revisión de Pastillas</option>
-                  <option value="discos">Revisión de Discos</option>
-                  <option value="suspension">Revisión de Suspensión</option>
-                  <option value="amortiguadores">Revisión de Amortiguadores</option>
-                  <option value="aceite">Cambio de aceite</option>
-                  <option value="llantas">Rotación de Llantas</option>
-                  <option value="alineacion">Alineación</option>
-                </select> */}
-                <input type="text" name="servicio" class="form-control" id="floatingInput" value={form.servicio} disabled />
-                <br/>
-                <input type="text" name="fecha" class="form-control" id="floatingInput" value={form.fecha} disabled/> 
-                <br/>
-                <input type="text" name="hora" class="form-control" id="floatingInput" value={form.hora} disabled />
-                <br/>
-                <input type="text" name="duracion" class="form-control" id="floatingInput" value={form.duracion} disabled />
-                <br/>
-                <input type="text" name="placa" class="form-control" id="floatingInput" value={form.placa} disabled  />                 
-                <br/>
-                <input type="text" name="precio" class="form-control" id="floatingInput" value={form.precio} disabled />
-                <br/>
-                <textarea class="form-control" name="descripcion" id="floatingInput" rows="3" value={form.descripcion} disabled ></textarea>
-                <br />
-                
+                <form onSubmit={handleSubmit}>
+                  <input type="text" name="servicio" class="form-control" id="floatingInput" value={form.servicio} disabled />
+                  <br/>
+                  <input type="text" name="fecha" class="form-control" id="floatingInput" value={form.fecha} disabled/> 
+                  <br/>
+                  <input type="text" name="hora" class="form-control" id="floatingInput" value={form.hora} disabled />
+                  <br/>
+                  <input type="text" name="duracion" class="form-control" id="floatingInput" value={form.duracion} disabled />
+                  <br/>
+                  <input type="text" name="placa" class="form-control" id="floatingInput" value={form.placa} disabled  />                 
+                  <br/>
+                  <input type="text" name="precio" class="form-control" id="floatingInput" value={form.precio} disabled />
+                  <br/>
+                  <textarea class="form-control" name="descripcion" id="floatingInput" rows="3" value={form.descripcion} disabled ></textarea>
+                  <br />
                   <textarea class="form-control" name="comment" id="floatingInput" rows="3" placeholder="Comentarios del servicio" value={state.comment} onChange={handleChange}></textarea>
                   <br />
                   <select class="form-select" aria-label="Estado" name="vestatus" value={state.vestatus} onChange={handleChange}>
