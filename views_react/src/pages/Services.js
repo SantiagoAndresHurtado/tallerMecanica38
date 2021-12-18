@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import Session from 'react-session-api';
  
@@ -8,6 +8,120 @@ const Services = () => {
     precio: "Precio",
     descripcion: "Descripción"
   })
+
+  const actualizarDetalle = (event) => {
+      setState({
+        ...state, 
+        idcita: idcitas[event.target.id]
+      });
+    fetch(`http://localhost:9000/detallecita/${idcitas[event.target.id]}`)
+    .then(response => response.json())
+    .then(data => {
+      fetch(`http://localhost:9000/detalleservicio/${data.idservicio}`)
+      .then(response => response.json())
+      .then(ser => {
+        setForm({
+          ...form, 
+          servicio: ser.nombre,
+          fecha: data.fecha,
+          hora: data.hora,
+          duracion: ser["duración"],
+          placa: data.placa,
+          precio: ser.costo,
+          descripcion: ser["descripción"]
+        })
+      })
+      .catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
+}
+
+const [serviciom1, setServiciom1] = useState({
+  "09:00": "Disponible",   
+  "09:30": "Disponible",
+  "10:00": "Disponible",
+  "10:30": "Disponible",
+  "11:00": "Disponible",
+  "11:30": "Disponible",
+  "12:00": "Disponible",
+  "12:30": "Disponible",
+  "13:00": "Disponible",
+  "13:30": "Disponible",
+  "14:00": "Disponible",
+  "14:30": "Disponible",
+  "15:00": "Disponible",
+  "15:30": "Disponible",
+  "16:00": "Disponible",
+  "16:30": "Disponible",
+  "17:00": "Disponible",
+})
+
+const [serviciom2, setServiciom2] = useState({
+  "09:00": "Disponible",   
+  "09:30": "Disponible",
+  "10:00": "Disponible",
+  "10:30": "Disponible",
+  "11:00": "Disponible",
+  "11:30": "Disponible",
+  "12:00": "Disponible",
+  "12:30": "Disponible",
+  "13:00": "Disponible",
+  "13:30": "Disponible",
+  "14:00": "Disponible",
+  "14:30": "Disponible",
+  "15:00": "Disponible",
+  "15:30": "Disponible",
+  "16:00": "Disponible",
+  "16:30": "Disponible",
+  "17:00": "Disponible",
+})
+
+const [serviciom3, setServiciom3] = useState({
+  "09:00": "Disponible",   
+  "09:30": "Disponible",
+  "10:00": "Disponible",
+  "10:30": "Disponible",
+  "11:00": "Disponible",
+  "11:30": "Disponible",
+  "12:00": "Disponible",
+  "12:30": "Disponible",
+  "13:00": "Disponible",
+  "13:30": "Disponible",
+  "14:00": "Disponible",
+  "14:30": "Disponible",
+  "15:00": "Disponible",
+  "15:30": "Disponible",
+  "16:00": "Disponible",
+  "16:30": "Disponible",
+  "17:00": "Disponible",
+})
+
+const [idcitas, setidcitas] = useState({
+  "09:00": "",   
+  "09:30": "",
+  "10:00": "",
+  "10:30": "",
+  "11:00": "",
+  "11:30": "",
+  "12:00": "",
+  "12:30": "",
+  "13:00": "",
+  "13:30": "",
+  "14:00": "",
+  "14:30": "",
+  "15:00": "",
+  "15:30": "",
+  "16:00": "",
+  "16:30": "",
+  "17:00": "",
+})
+
+const [state, setState] = useState({
+  vestatus: "",
+  comment: "",
+  idcita: ""
+})
+
 
 const handleService = (event) => {
   fetch(`http://localhost:9000/detalleservicio/${event.target.value}`)
@@ -71,6 +185,77 @@ const handleService = (event) => {
 
     });
   }
+  useEffect(() => {
+    fetch(`http://localhost:9000/agendadia/61bbc1fea68fa1d1517b94e4`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      let hora = {...serviciom1}
+      let identificacion = {...idcitas}
+      for (let i=0; i<data.length; i++){
+        identificacion[data[i].hora]=data[i]._id;
+        fetch(`http://localhost:9000/detalleservicio/${data[i].idservicio}`) 
+        .then(response => response.json())
+        .then(ser => {
+          console.log(ser.nombre)
+          hora[data[i].hora] = ser.nombre;
+        })
+        .catch(error => console.log(error));
+      }
+      setServiciom1(hora);
+      setidcitas(identificacion);
+    })
+    .catch(error => console.log(error));
+  }, []);
+
+  useEffect(() => {   
+    fetch(`http://localhost:9000/agendadia/61bbc2cda68fa1d1517b94ec`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      let hora = {...serviciom2}
+      let identificacion = {...idcitas}
+      for (let i=0; i<data.length; i++){
+        identificacion[data[i].hora]=data[i]._id;
+        fetch(`http://localhost:9000/detalleservicio/${data[i].idservicio}`) 
+        .then(response => response.json())
+        .then(ser => {
+          console.log(ser.nombre)
+          hora[data[i].hora] = ser.nombre;
+        })
+        .catch(error => console.log(error));
+      }
+      setServiciom2(hora);
+      setidcitas(identificacion);
+    })
+    .catch(error => console.log(error));
+  
+  }, []);
+
+  
+  useEffect(() => {
+    fetch(`http://localhost:9000/agendadia/61bbc302a68fa1d1517b94f0`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      let hora = {...serviciom3}
+      let identificacion = {...idcitas}
+      for (let i=0; i<data.length; i++){
+        identificacion[data[i].hora]=data[i]._id;
+        fetch(`http://localhost:9000/detalleservicio/${data[i].idservicio}`) 
+        .then(response => response.json())
+        .then(ser => {
+          console.log(ser.nombre)
+          hora[data[i].hora] = ser.nombre;
+        })
+        .catch(error => console.log(error));
+      }
+      setServiciom3(hora);
+      setidcitas(identificacion);
+    })
+    .catch(error => console.log(error));
+  }, []);
+
 
   return (
     <div className="container">
@@ -83,6 +268,8 @@ const handleService = (event) => {
             <div className="card-body">
               <div class="form-floating mb-3">
                 <form onSubmit={handleSubmit}>
+                <Form.Control type="date" name='fecha' placeholder="Seleccione fecha"  value={form.fecha} onChange={handleChange}/>
+                  <br/> 
                   <select class="form-select" aria-label="Servicios" name="idservicio" value={form.idservicio} onChange={handleService}>
                     <option selected>Seleccione el servicio</option>
                     <option value="61be0fe2ff24f653594bf280">Revisión de Frenos</option>
@@ -95,14 +282,14 @@ const handleService = (event) => {
                     <option value="61be1050ff24f653594bf28c">Alineación</option>
                   </select>
                   <br/>
+
                   <input type="text" name="duracion" class="form-control" id="floatingInput" placeholder="Duracion" value={detalleServicio.duracion + ' ' + '(minutos)'} disabled/>                      
                   <br/>                     
                   <input type="text" name="precio" class="form-control" id="floatingInput" placeholder="Precio del servicio" disabled value={'(COP)' + ' ' +  detalleServicio.precio} />
                   <br/>
                   <textarea class="form-control" name="descripcion" id="floatingInput" rows="3" placeholder="Descripción del servicio" disabled value={detalleServicio.descripcion}></textarea>  
                   <br/>                        
-                  <Form.Control type="date" name='fecha' placeholder="Seleccione fecha"  value={form.fecha} onChange={handleChange}/>
-                  <br/>                          
+                                          
                   <Form.Control type="time" name='hora' placeholder="Seleccione hora"  value={form.hora} onChange={handleChange}/>
                   <br/>
                   <select class="form-select" aria-label="Mecánicos" name="idcolaborador" value={form.idcolaborador} onChange={handleChange}>
@@ -137,107 +324,107 @@ const handleService = (event) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">9:00</th>
-                    <td >Aceite</td>
-                    <td>Frenos</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="09:00"scope="row">09:00</th>
+                    <td class= {serviciom1["09:00"]} id="09:00">{serviciom1["09:00"]}</td>
+                    <td class= {serviciom2["09:00"]} id="09:00">{serviciom2["09:00"]}</td>
+                    <td class= {serviciom3["09:00"]} id="09:00">{serviciom3["09:00"]}</td> 
                   </tr>
-                  <tr>
-                    <th scope="row">9:30</th>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td>Llantas</td>
-                    <td>Alineación</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="09:30"scope="row">09:30</th>
+                    <td class= {serviciom1["09:30"]} id="09:30">{serviciom1["09:30"]}</td>
+                    <td class= {serviciom2["09:30"]} id="09:30">{serviciom2["09:30"]}</td>
+                    <td class= {serviciom3["09:30"]} id="09:30">{serviciom3["09:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">10:00</th>
-                    <td>Suspensión</td>
-                    <td>Discos</td>
-                    <td>Amortiguadores</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="10:00"scope="row">10:00</th>
+                    <td class= {serviciom1["10:00"]} id="10:00">{serviciom1["10:00"]}</td>
+                    <td class= {serviciom2["10:00"]} id="10:00">{serviciom2["10:00"]}</td>
+                    <td class= {serviciom3["10:00"]} id="10:00">{serviciom3["10:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">10:30</th>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td>Amortiguadores</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="10:30"scope="row">10:30</th>
+                    <td class= {serviciom1["10:30"]} id="10:30">{serviciom1["10:30"]}</td>
+                    <td class= {serviciom2["10:30"]} id="10:30">{serviciom2["10:30"]}</td>
+                    <td class= {serviciom3["10:30"]} id="10:30">{serviciom3["10:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">11:00</th>
-                    <td>Discos</td>
-                    <td>Amortiguadores</td>
-                    <td>Amortiguadores</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="11:00"scope="row">11:00</th>
+                    <td class= {serviciom1["11:00"]} id="11:00">{serviciom1["11:00"]}</td>
+                    <td class= {serviciom2["11:00"]} id="11:00">{serviciom2["11:00"]}</td>
+                    <td class= {serviciom3["11:00"]} id="11:00">{serviciom3["11:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">11:30</th>
-                    <td>Amortiguadores</td>
-                    <td>Discos</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="11:30"scope="row">11:30</th>
+                    <td class= {serviciom1["11:30"]} id="11:30">{serviciom1["11:30"]}</td>
+                    <td class= {serviciom2["11:30"]} id="11:30">{serviciom2["11:30"]}</td>
+                    <td class= {serviciom3["11:30"]} id="11:30">{serviciom3["11:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">12:00</th>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td>Aceite</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="12:00"scope="row">12:00</th>
+                    <td class= {serviciom1["12:00"]} id="12:00">{serviciom1["12:00"]}</td>
+                    <td class= {serviciom2["12:00"]} id="12:00">{serviciom2["12:00"]}</td>
+                    <td class= {serviciom3["12:00"]} id="12:00">{serviciom3["12:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">12:30</th>
-                    <td>Pastillas</td>
-                    <td>Amortiguadores</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="12:30"scope="row">12:30</th>
+                    <td class= {serviciom1["12:30"]} id="12:30">{serviciom1["12:30"]}</td>
+                    <td class= {serviciom2["12:30"]} id="12:30">{serviciom2["12:30"]}</td>
+                    <td class= {serviciom3["12:30"]} id="12:30">{serviciom3["12:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">13:00</th>
-                    <td>Amortiguadores</td>
-                    <td>Discos</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="13:00"scope="row">13:00</th>
+                    <td class= {serviciom1["13:00"]} id="13:00">{serviciom1["13:00"]}</td>
+                    <td class= {serviciom2["13:00"]} id="13:00">{serviciom2["13:00"]}</td>
+                    <td class= {serviciom3["13:00"]} id="13:00">{serviciom3["13:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">13:30</th>
-                    <td>Pastillas</td>
-                    <td>Amortiguadores</td>
-                    <td>Discos</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="13:30"scope="row">13:30</th>
+                    <td class= {serviciom1["13:30"]} id="13:30">{serviciom1["13:30"]}</td>
+                    <td class= {serviciom2["13:30"]} id="13:30">{serviciom2["13:30"]}</td>
+                    <td class= {serviciom3["13:30"]} id="13:30">{serviciom3["13:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">14:00</th>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td>Aceite</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="14:00"scope="row">14:00</th>
+                    <td class= {serviciom1["14:00"]} id="14:00">{serviciom1["14:00"]}</td>
+                    <td class= {serviciom2["14:00"]} id="14:00">{serviciom2["14:00"]}</td>
+                    <td class= {serviciom3["14:00"]} id="14:00">{serviciom3["14:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">14:30</th>
-                    <td>Pastillas</td>
-                    <td>Alineación</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="14:30"scope="row">14:30</th>
+                    <td class= {serviciom1["14:30"]} id="14:30">{serviciom1["14:30"]}</td>
+                    <td class= {serviciom2["14:30"]} id="14:30">{serviciom2["14:30"]}</td>
+                    <td class= {serviciom3["14:30"]} id="14:30">{serviciom3["14:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">15:00</th>
-                    <td>Discos</td>
-                    <td>Llantas</td>
-                    <td>Aceite</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="15:00"scope="row">15:00</th>
+                    <td class= {serviciom1["15:00"]} id="15:00">{serviciom1["15:00"]}</td>
+                    <td class= {serviciom2["15:00"]} id="15:00">{serviciom2["15:00"]}</td>
+                    <td class= {serviciom3["15:00"]} id="15:00">{serviciom3["15:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">15:30</th>
-                    <td>Pastillas</td>
-                    <td>Llantas</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="15:30"scope="row">15:30</th>
+                    <td class= {serviciom1["15:30"]} id="15:30">{serviciom1["15:30"]}</td>
+                    <td class= {serviciom2["15:30"]} id="15:30">{serviciom2["15:30"]}</td>
+                    <td class= {serviciom3["15:30"]} id="15:30">{serviciom3["15:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">16:00</th>
-                    <td>Pastillas</td>
-                    <td>Aceite</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="16:00"scope="row">16:00</th>
+                    <td class= {serviciom1["16:00"]} id="16:00">{serviciom1["16:00"]}</td>
+                    <td class= {serviciom2["16:00"]} id="16:00">{serviciom2["16:00"]}</td>
+                    <td class= {serviciom3["16:00"]} id="16:00">{serviciom3["16:00"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">16:30</th>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td>Amortiguadores</td>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="16:30"scope="row">16:30</th>
+                    <td class= {serviciom1["16:30"]} id="16:30">{serviciom1["16:30"]}</td>
+                    <td class= {serviciom2["16:30"]} id="16:30">{serviciom2["16:30"]}</td>
+                    <td class= {serviciom3["16:30"]} id="16:30">{serviciom3["16:30"]}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">17:00</th>
-                    <td style={{backgroundColor:'lightgreen'}}>Disponible</td>
-                    <td>Llantas</td>
-                    <td>Discos</td>
+                  <tr onClick={actualizarDetalle}>
+                    <th id="17:00"scope="row">17:00</th>
+                    <td class= {serviciom1["17:00"]} id="17:00">{serviciom1["17:00"]}</td>
+                    <td class= {serviciom2["17:00"]} id="17:00">{serviciom2["17:00"]}</td>
+                    <td class= {serviciom3["17:00"]} id="17:00">{serviciom3["17:00"]}</td>
                   </tr>
                 </tbody>
               </table>
