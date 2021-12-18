@@ -116,7 +116,7 @@ const handleService = (event) => {
                   <br />
                   <input className="btn btn-primary" type="submit" value="Confirmar" /> 
                   &nbsp; &nbsp;
-                  <input className="btn btn-primary" type="submit" value="Cancelar Servicio" disabled />                  
+                  <input className="btn btn-secondary" type="submit" value="Cancelar Servicio" disabled />                  
                 </form>
                 
               </div>

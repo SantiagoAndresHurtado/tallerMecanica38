@@ -51,7 +51,6 @@ router.put('/citas/:id', (req, res) => {
 //borrar cita
 router.delete('/citas/:id', (req, res) => {
     const {id} = req.params;
-    const {fecha, hora, placa, idservicio, idempleado, estadoServicio, estadoVehiculo, comentario} = req.body;
     citaSchema
     .remove({_id:id})
     .then((data) => res.json(data))
