@@ -33,10 +33,12 @@ const Reports = () => {
       }
 
   return (
-        <div className="container">
+          <div className="container">
             <div className="row g-3">
             <div className="card-header">
+            <div className="card shadow-lg border-0 rounded-lg mt-5">
               <h1 className="text-center font-weight-light my-4"> Generar Reportes</h1>
+              </div>
             </div>
                 <div className="col-lg-5">
                   <div className="card shadow-lg border-0 rounded-lg mt-5">

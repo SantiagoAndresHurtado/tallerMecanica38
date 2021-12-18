@@ -77,6 +77,7 @@ const Registro = () => {
                           programa y la normativa sobre protección de datos.
                         </label>
                       </div>
+                      <br />
                       <input className="btn btn-primary" type="submit" value="Registrar" />
                     </form>
                   </div>

@@ -74,8 +74,10 @@ const handleService = (event) => {
 
   return (
     <div className="container">
-      <div className="row g-3">
-        <div className="card-header"><h3 className="text-center font-weight-light my-4">Configurar Servicios</h3></div>
+            <div className="row g-3">
+            <div className="card shadow-lg border-0 rounded-lg mt-5">
+              <h1 className="text-center font-weight-light my-4">Configurar Servicios</h1>
+              </div>
         <div className="col-lg-5">
           <div className="card shadow-lg border-0 rounded-lg mt-5">
             <div className="card-body">
@@ -112,7 +114,9 @@ const handleService = (event) => {
                   <br/>
                   <input type="text" name="placa" class="form-control" id="floatingInput" placeholder="Placa del vehículo" value={form.placa} onChange={handleChange}/>                         
                   <br />
-                  <input className="btn btn-primary" type="submit" value="Confirmar" />                  
+                  <input className="btn btn-primary" type="submit" value="Confirmar" /> 
+                  &nbsp; &nbsp;
+                  <input className="btn btn-primary" type="submit" value="Cancelar Servicio" disabled />                  
                 </form>
                 
               </div>
