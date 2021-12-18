@@ -52,43 +52,6 @@ app.get('/', (req, res) => {
     res.send("Here is the login");
 });
 
-// AGENDA -------------------------------------------------------------------
-app.get('/agendadia/:id', (req, res) => {
-    let {id} = req.params
-    let today = new Date();
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    client
-    .get(`citas/${id}/${date}`)
-    .then((ans) => res.json(ans.data))
-    .catch((error) => res.json({message:error}))
-});
-
-app.get('/detallecita/:id', (req, res) => {
-    let {id} = req.params
-    client
-    .get(`citas/${id}`)
-    .then((ans) => res.json(ans.data))
-    .catch((error) => res.json({message:error}))
-});
-
-app.get('/detalleservicio/:id', (req, res) => {
-    let {id} = req.params
-    client
-    .get(`servicios/${id}`)
-    .then((ans) => res.json(ans.data))
-    .catch((error) => res.json({message:error}))
-});
-
-app.post('/actualizacioncitas', (req, res) => {
-    client
-    .put(`citas/${req.body.idcita}`, {
-        "estadoVehiculo":req.body.vestatus,
-        "comentario":req.body.comment
-    })
-    .then((ans) => res.json(ans.data))
-    .catch((error) => res.json({message:error}))
-});
-
 
 // REGISTRO -------------------------------------------------------------------
 app.post('/crearUsuario', (req, res) => {
@@ -136,6 +99,68 @@ app.post('/crearUsuario', (req, res) => {
         });
   })
 });
+
+// PROGRAMAR SERVICIOS -------------------------------------------------------------------
+app.post('/crearCita', (req, res) => {
+    client
+    .post('citas', {
+        fecha: req.body.fecha,
+        hora: req.body.hora,
+        placa: req.body.placa,
+        idservicio: req.body.idservicio,
+        idcolaborador: req.body.idcolaborador,
+        estadoServicio:"Disponible",
+        estadoVehiculo:"",
+        comentario:""
+    })
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
+
+
+// AGENDA -------------------------------------------------------------------
+app.get('/agendadia/:id', (req, res) => {
+    let {id} = req.params
+    let today = new Date();
+    // let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let date = "2021-12-20"
+    client
+    .get(`citas/${id}/${date}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+    
+});
+
+app.get('/detallecita/:id', (req, res) => {
+    let {id} = req.params
+    client
+    .get(`citas/${id}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
+app.get('/detalleservicio/:id', (req, res) => {
+    console.log("++++++++++++++")
+    let {id} = req.params
+    console.log(id)
+    client
+    .get(`servicios/${id}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
+app.post('/actualizacioncitas', (req, res) => {
+    client
+    .put(`citas/${req.body.idcita}`, {
+        "estadoVehiculo":req.body.vestatus,
+        "comentario":req.body.comment
+    })
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
+
+
 
 
 // REPORTES -------------------------------------------------------------------

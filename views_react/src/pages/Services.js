@@ -3,40 +3,74 @@ import Form from "react-bootstrap/Form";
 import Session from 'react-session-api';
  
 const Services = () => {
-  const [state, setState] = useState({
-    plate: "",
-    service: "",
-    employee: "",
-    term: "",
-    price: "",
-    date:"",
-    time:"",
-    description: ""
+  const [detalleServicio, setDetalleServicio] = useState({
+    duracion: "Duración",
+    precio: "Precio",
+    descripcion: "Descripción"
+  })
+
+const handleService = (event) => {
+  fetch(`http://localhost:9000/detalleservicio/${event.target.value}`)
+  .then(response => response.json())
+  .then(ser => {
+    setDetalleServicio({
+      ...detalleServicio,
+      duracion: ser["duración"],
+      precio: ser.costo,
+      descripcion: ser["descripción"],
+    })
+    setForm({
+      ...form,
+      idservicio: ser._id
+    })
+  })
+}
+
+  const [form, setForm] = useState({
+    idservicio: "",
+    idcolaborador: "",
+    placa: "",
+    hora: "",
+    fecha: ""
   })
 
   const handleChange = (event) => {
-      setState({
-        ...state,
-        [event.target.name]: event.target.value
-      })
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    })
   }
 
   const handleSubmit = (event) => {
-        alert('Sus datos se han guardado exitosamente');
-        event.preventDefault();
-     
-        fetch('http://localhost:9000/services', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          // We convert the React state to JSON and send it as the POST body
-          body: JSON.stringify(state)
-        }).then(function(response) {
-          return response.json();
-        });
-      }
+    event.preventDefault();
+    
+    fetch('http://localhost:9000/crearCita', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      // We convert the React form to JSON and send it as the POST body
+      body: JSON.stringify(form)
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('Sus datos se han guardado exitosamente')
+      setDetalleServicio({
+        duracion: "Duración",
+        precio: "Precio",
+        descripcion: "Descripción"
+      })
+      setForm({
+        idservicio: "",
+        idcolaborador: "",
+        placa: "",
+        hora: "",
+        fecha: ""
+      })
+
+    });
+  }
 
   return (
     <div className="container">
@@ -47,39 +81,40 @@ const Services = () => {
             <div className="card-body">
               <div class="form-floating mb-3">
                 <form onSubmit={handleSubmit}>
-                  <select class="form-select" aria-label="Servicios" name="service" value={state.service} onChange={handleChange}>
+                  <select class="form-select" aria-label="Servicios" name="idservicio" value={form.idservicio} onChange={handleService}>
                     <option selected>Seleccione el servicio</option>
-                    <option value="frenos">Revisión de Frenos</option>
-                    <option value="pastillas">Revisión de Pastillas</option>
-                    <option value="discos">Revisión de Discos</option>
-                    <option value="suspension">Revisión de Suspensión</option>
-                    <option value="amortiguadores">Revisión de Amortiguadores</option>
-                    <option value="aceite">Cambio de aceite</option>
-                    <option value="llantas">Rotación de Llantas</option>
-                    <option value="alineacion">Alineación</option>
-                  </select>
-                  <br/>                        
-                  <Form.Control type="date" name='date' placeholder="Seleccione fecha"  value={state.date} onChange={handleChange}/>
-                  <br/>                          
-                  <Form.Control type="time" name='time' placeholder="Seleccione fecha"  value={state.time} onChange={handleChange}/>
-                  <br/>
-                  <input type="text" name="term" class="form-control" id="floatingInput" placeholder="Duracion" value={state.term} disabled onChange={handleChange}/>                      
-                  <br/>
-                  <select class="form-select" aria-label="Mecánicos" name="employee" value={state.employee} onChange={handleChange}>
-                    <option selected>Seleccione el Mecánico</option>
-                    <option value="mecanico1">mecanico1</option>
-                    <option value="mecanico2">mecanico2</option>
-                    <option value="mecanico3">mecanico3</option>
+                    <option value="61bbbefea68fa1d1517b94c9">Revisión de Frenos</option>
+                    <option value="61bbbf16a68fa1d1517b94cb">Revisión de Pastillas</option>
+                    <option value="61bbbf28a68fa1d1517b94cd">Revisión de Discos</option>
+                    <option value="61bbbf39a68fa1d1517b94cf">Revisión de Suspensión</option>
+                    <option value="61bbbf46a68fa1d1517b94d1">Revisión de Amortiguadores</option>
+                    <option value="61bbbf59a68fa1d1517b94d3">Cambio de aceite</option>
+                    <option value="61bbbf7ca68fa1d1517b94d9">Rotación de Llantas</option>
+                    <option value="61bbbf68a68fa1d1517b94d5">Alineación</option>
                   </select>
                   <br/>
-                  <input type="text" name="plate" class="form-control" id="floatingInput" placeholder="Placa del vehículo" value={state.plate} onChange={handleChange}/>                         
+                  <input type="text" name="duracion" class="form-control" id="floatingInput" placeholder="Duracion" value={detalleServicio.duracion} disabled/>                      
                   <br/>                     
-                  <input type="text" name="price" class="form-control" id="floatingInput" placeholder="Precio del servicio" disabled value={state.price} onChange={handleChange} />
+                  <input type="text" name="precio" class="form-control" id="floatingInput" placeholder="Precio del servicio" disabled value={detalleServicio.precio} />
                   <br/>
-                  <textarea class="form-control" name="description" id="floatingInput" rows="3" placeholder="Descripción del servicio" disabled value={state.description} onChange={handleChange}></textarea>      
+                  <textarea class="form-control" name="descripcion" id="floatingInput" rows="3" placeholder="Descripción del servicio" disabled value={detalleServicio.descripcion}></textarea>  
+                  <br/>                        
+                  <Form.Control type="date" name='fecha' placeholder="Seleccione fecha"  value={form.fecha} onChange={handleChange}/>
+                  <br/>                          
+                  <Form.Control type="time" name='hora' placeholder="Seleccione hora"  value={form.hora} onChange={handleChange}/>
+                  <br/>
+                  <select class="form-select" aria-label="Mecánicos" name="idcolaborador" value={form.idcolaborador} onChange={handleChange}>
+                    <option selected>Seleccione el Mecánico</option>
+                    <option value="61bbc1fea68fa1d1517b94e4">mecanico1</option>
+                    <option value="61bbc2cda68fa1d1517b94ec">mecanico2</option>
+                    <option value="61bbc302a68fa1d1517b94f0">mecanico3</option>
+                  </select>
+                  <br/>
+                  <input type="text" name="placa" class="form-control" id="floatingInput" placeholder="Placa del vehículo" value={form.placa} onChange={handleChange}/>                         
                   <br />
                   <input className="btn btn-primary" type="submit" value="Confirmar" />                  
                 </form>
+                
               </div>
             </div>
           </div>

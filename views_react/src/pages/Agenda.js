@@ -33,7 +33,6 @@ const Agenda = () => {
           precio: ser.costo,
           descripcion: ser["descripción"]
         })
-
       })
       .catch(error => console.log(error));
     })
@@ -41,8 +40,8 @@ const Agenda = () => {
 }
 
   const [idcitas, setidcitas] = useState({
-    "9:00": "",   
-    "9:30": "",
+    "09:00": "",   
+    "09:30": "",
     "10:00": "",
     "10:30": "",
     "11:00": "",
@@ -61,9 +60,9 @@ const Agenda = () => {
   })
 
 
-  const [actividad, setActividad] = useState({
-    "9:00": "Disponible",   
-    "9:30": "Disponible",
+  const [servicio, setServicio] = useState({
+    "09:00": "Disponible",   
+    "09:30": "Disponible",
     "10:00": "Disponible",
     "10:30": "Disponible",
     "11:00": "Disponible",
@@ -85,13 +84,20 @@ const Agenda = () => {
     fetch(`http://localhost:9000/agendadia/${Session.get("userid")}`)
     .then(response => response.json())
     .then(data => {
-      let hora = {...actividad}
+      console.log(data)
+      let hora = {...servicio}
       let identificacion = {...idcitas}
       for (let i=0; i<data.length; i++){
-        hora[data[i].hora]= data[i].idservicio;
         identificacion[data[i].hora]=data[i]._id;
+        fetch(`http://localhost:9000/detalleservicio/${data[i].idservicio}`) 
+        .then(response => response.json())
+        .then(ser => {
+          console.log(ser.nombre)
+          hora[data[i].hora] = ser.nombre;
+        })
+        .catch(error => console.log(error));
       }
-      setActividad(hora);
+      setServicio(hora);
       setidcitas(identificacion);
     })
     .catch(error => console.log(error));
@@ -102,9 +108,6 @@ const Agenda = () => {
     comment: "",
     idcita: ""
   })
-  const prueba = {"fecha":"2021-12-11","hora":"9"}
-  const prueba2 = {"fecha":"2021-02-12","hora":"9"}
-
   const handleChange = (event) => {
       setState({
         ...state,
@@ -184,72 +187,72 @@ const Agenda = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <th id="9:00" scope="row" onClick={actualizarDetalle}>9:00</th>
-                      <td id="9:00" name="9:00" style={{backgroundColor:'lightgreen'}} onClick={actualizarDetalle}>{actividad["9:00"]}</td>
+                      <th id="09:00" scope="row" onClick={actualizarDetalle}>09:00</th>
+                      <td id="09:00" name="09:00" style={{backgroundColor:'lightgreen'}} onClick={actualizarDetalle}>{servicio["09:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
-                      <th id="9:30"scope="row">9:30</th>
-                      <td id="9:30">{actividad["9:30"]}</td>
+                      <th id="09:30"scope="row">09:30</th>
+                      <td id="09:30">{servicio["09:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="10:00"scope="row">10:00</th>
-                      <td id="10:00">{actividad["10:00"]}</td>
+                      <td id="10:00">{servicio["10:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="10:30" scope="row">10:30</th>
-                      <td id="10:30" style={{backgroundColor:'lightgreen'}}>{actividad["10:30"]}</td>
+                      <td id="10:30" style={{backgroundColor:'lightgreen'}}>{servicio["10:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="11:00" scope="row">11:00</th>
-                      <td id="11:00">{actividad["11:00"]}</td>
+                      <td id="11:00">{servicio["11:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="11:30" scope="row">11:30</th>
-                      <td id="11:30" style={{backgroundColor:'lightgreen'}}>{actividad["11:30"]}</td>
+                      <td id="11:30" style={{backgroundColor:'lightgreen'}}>{servicio["11:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="12:00" scope="row">12:00</th>
-                      <td id="12:00" style={{backgroundColor:'lightgreen'}}>{actividad["12:00"]}</td>
+                      <td id="12:00" style={{backgroundColor:'lightgreen'}}>{servicio["12:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="12:30" scope="row">12:30</th>
-                      <td id="12:30">{actividad["12:30"]}</td>
+                      <td id="12:30">{servicio["12:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="13:00" scope="row">13:00</th>
-                      <td id="13:00">{actividad["13:00"]}</td>
+                      <td id="13:00">{servicio["13:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="13:30" scope="row">13:30</th>
-                      <td id="13:00">{actividad["13:30"]}</td>
+                      <td id="13:00">{servicio["13:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="14:00" scope="row">14:00</th>
-                      <td id="14:00" style={{backgroundColor:'lightgreen'}}>{actividad["14:00"]}</td>
+                      <td id="14:00" style={{backgroundColor:'lightgreen'}}>{servicio["14:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="14:30" scope="row">14:30</th>
-                      <td id="14:00">{actividad["14:30"]}</td>
+                      <td id="14:00">{servicio["14:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="15:00" scope="row">15:00</th>
-                      <td id="15:00">{actividad["15:00"]}</td>
+                      <td id="15:00">{servicio["15:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="15:30" scope="row">15:30</th>
-                      <td id="15:30"style={{backgroundColor:'lightgreen'}}>{actividad["15:30"]}</td>
+                      <td id="15:30"style={{backgroundColor:'lightgreen'}}>{servicio["15:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="16:00" scope="row">16:00</th>
-                      <td id="16:00">{actividad["16:00"]}</td>
+                      <td id="16:00">{servicio["16:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="16:30" scope="row">16:30</th>
-                      <td id="16:30" style={{backgroundColor:'lightgreen'}}>{actividad["16:30"]}</td>
+                      <td id="16:30" style={{backgroundColor:'lightgreen'}}>{servicio["16:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="17:00" scope="row">17:00</th>
-                      <td id="17:00">{actividad["17:00"]}</td>
+                      <td id="17:00">{servicio["17:00"]}</td>
                     </tr>
                   </tbody>
                 </table>
