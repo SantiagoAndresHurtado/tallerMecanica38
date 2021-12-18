@@ -190,71 +190,71 @@ const Agenda = () => {
                   <tbody>
                     <tr>
                       <th id="09:00" scope="row" onClick={actualizarDetalle}>09:00</th>
-                      <td id="09:00" name="09:00" style={{backgroundColor:'lightgreen'}} onClick={actualizarDetalle}>{servicio["09:00"]}</td>
+                      <td class= {servicio["09:00"]} id="09:00" name="09:00"  onClick={actualizarDetalle}>{servicio["09:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="09:30"scope="row">09:30</th>
-                      <td id="09:30">{servicio["09:30"]}</td>
+                      <td class= {servicio["09:30"]} id="09:30">{servicio["09:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="10:00"scope="row">10:00</th>
-                      <td id="10:00">{servicio["10:00"]}</td>
+                      <td class= {servicio["10:00"]} id="10:00">{servicio["10:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="10:30" scope="row">10:30</th>
-                      <td id="10:30" style={{backgroundColor:'lightgreen'}}>{servicio["10:30"]}</td>
+                      <td  class= {servicio["10:30"]} id="10:30"   >{servicio["10:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="11:00" scope="row">11:00</th>
-                      <td id="11:00">{servicio["11:00"]}</td>
+                      <td class= {servicio["11:00"]} id="11:00">{servicio["11:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="11:30" scope="row">11:30</th>
-                      <td id="11:30" style={{backgroundColor:'lightgreen'}}>{servicio["11:30"]}</td>
+                      <td class= {servicio["11:30"]} id="11:30" >{servicio["11:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="12:00" scope="row">12:00</th>
-                      <td id="12:00" style={{backgroundColor:'lightgreen'}}>{servicio["12:00"]}</td>
+                      <td  class= {servicio["12:00"]} id="12:00" >{servicio["12:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="12:30" scope="row">12:30</th>
-                      <td id="12:30">{servicio["12:30"]}</td>
+                      <td class= {servicio["12:30"]} id="12:30">{servicio["12:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="13:00" scope="row">13:00</th>
-                      <td id="13:00">{servicio["13:00"]}</td>
+                      <td class= {servicio["13:00"]} id="13:00">{servicio["13:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="13:30" scope="row">13:30</th>
-                      <td id="13:00">{servicio["13:30"]}</td>
+                      <td class= {servicio["13:30"]} id="13:30">{servicio["13:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="14:00" scope="row">14:00</th>
-                      <td id="14:00" style={{backgroundColor:'lightgreen'}}>{servicio["14:00"]}</td>
+                      <td class= {servicio["14:00"]} id="14:00" >{servicio["14:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="14:30" scope="row">14:30</th>
-                      <td id="14:00">{servicio["14:30"]}</td>
+                      <td class= {servicio["14:30"]} id="14:00">{servicio["14:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="15:00" scope="row">15:00</th>
-                      <td id="15:00">{servicio["15:00"]}</td>
+                      <td class= {servicio["15:00"]}  id="15:00">{servicio["15:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="15:30" scope="row">15:30</th>
-                      <td id="15:30"style={{backgroundColor:'lightgreen'}}>{servicio["15:30"]}</td>
+                      <td class= {servicio["15:30"]} id="15:30"  >{servicio["15:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="16:00" scope="row">16:00</th>
-                      <td id="16:00">{servicio["16:00"]}</td>
+                      <td class= {servicio["16:00"]}  id="16:00">{servicio["16:00"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="16:30" scope="row">16:30</th>
-                      <td id="16:30" style={{backgroundColor:'lightgreen'}}>{servicio["16:30"]}</td>
+                      <td class= {servicio["16:30"]} id="16:30"   >{servicio["16:30"]}</td>
                     </tr>
                     <tr onClick={actualizarDetalle}>
                       <th id="17:00" scope="row">17:00</th>
-                      <td id="17:00">{servicio["17:00"]}</td>
+                      <td class= {servicio["17:00"]}  id="17:00">{servicio["17:00"]}</td>
                     </tr>
                   </tbody>
                 </table>

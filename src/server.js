@@ -123,8 +123,8 @@ app.post('/crearCita', (req, res) => {
 app.get('/agendadia/:id', (req, res) => {
     let {id} = req.params
     let today = new Date();
-    // let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let date = "2021-12-20"
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    // let date = "2021-12-20"
     client
     .get(`citas/${id}/${date}`)
     .then((ans) => res.json(ans.data))
