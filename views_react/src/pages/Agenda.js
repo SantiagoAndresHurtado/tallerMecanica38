@@ -1,8 +1,10 @@
+import { set } from 'mongoose';
 import React, {useState, useEffect} from 'react';
 import Session from 'react-session-api'
  
 const Agenda = () => {
   const [form, setForm] = useState({
+    "idcita": "",
     "servicio": "servicio",   
     "fecha": "fecha",
     "hora": "hora",
@@ -24,7 +26,8 @@ const Agenda = () => {
       .then(response => response.json())
       .then(ser => {
         setForm({
-          ...form, 
+          ...form,
+          idcita: idcitas[event.target.id],
           servicio: ser.nombre,
           fecha: data.fecha,
           hora: data.hora,
@@ -137,6 +140,28 @@ const Agenda = () => {
     });
   }
 
+  const borrarCita = (event) => {
+    console.log(form.idcita)
+    fetch(`http://localhost:9000/borrarcita/${form.idcita}`) 
+    .then(response => response.json())
+    .then(ser => {
+      setServicio({
+        ...servicio,
+        [form.hora]:"Disponible"
+      })
+      setForm({
+        "idcita": "",
+        "servicio": "servicio",   
+        "fecha": "fecha",
+        "hora": "hora",
+        "duracion": "duracion",
+        "placa": "placa",
+        "precio": "precio",
+        "descripcion": "descripcion",
+      })
+    })
+    .catch(error => console.log(error));
+  }
 
   return (
   <div className="container">
@@ -171,6 +196,8 @@ const Agenda = () => {
                   </select>
                   <br />
                   <input className="btn btn-primary" type="submit" value="Servicio Completado" />
+                  &nbsp; &nbsp;
+                  <input className="btn btn-secondary" type="submit" value="Cancelar Servicio" onClick={borrarCita}/>
                 </form>
               </div>
             </div>

@@ -141,9 +141,7 @@ app.get('/detallecita/:id', (req, res) => {
 });
 
 app.get('/detalleservicio/:id', (req, res) => {
-    console.log("++++++++++++++")
     let {id} = req.params
-    console.log(id)
     client
     .get(`servicios/${id}`)
     .then((ans) => res.json(ans.data))
@@ -160,7 +158,13 @@ app.post('/actualizacioncitas', (req, res) => {
     .catch((error) => res.json({message:error}))
 });
 
-
+app.get('/borrarcita/:id', (req, res) => {
+    let {id} = req.params
+    client
+    .delete(`citas/${id}`)
+    .then((ans) => res.json(ans.data))
+    .catch((error) => res.json({message:error}))
+});
 
 
 // REPORTES -------------------------------------------------------------------
