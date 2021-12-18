@@ -4,6 +4,7 @@ const router = express.Router();
 
 //crear servicio
 router.post('/servicios', (req, res) => {
+    console.log("******************")
     const servicio = servicioSchema(req.body);
     servicio
     .save()
