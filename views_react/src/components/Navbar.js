@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Session from 'react-session-api'
+
+import "../tablas.css";
 import "../style.css";
 
 const Navbar = ({ history }) => {

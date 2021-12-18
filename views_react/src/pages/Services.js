@@ -85,19 +85,19 @@ const handleService = (event) => {
                 <form onSubmit={handleSubmit}>
                   <select class="form-select" aria-label="Servicios" name="idservicio" value={form.idservicio} onChange={handleService}>
                     <option selected>Seleccione el servicio</option>
-                    <option value="61bbbefea68fa1d1517b94c9">Revisión de Frenos</option>
-                    <option value="61bbbf16a68fa1d1517b94cb">Revisión de Pastillas</option>
-                    <option value="61bbbf28a68fa1d1517b94cd">Revisión de Discos</option>
-                    <option value="61bbbf39a68fa1d1517b94cf">Revisión de Suspensión</option>
-                    <option value="61bbbf46a68fa1d1517b94d1">Revisión de Amortiguadores</option>
-                    <option value="61bbbf59a68fa1d1517b94d3">Cambio de aceite</option>
-                    <option value="61bbbf7ca68fa1d1517b94d9">Rotación de Llantas</option>
-                    <option value="61bbbf68a68fa1d1517b94d5">Alineación</option>
+                    <option value="61be0fe2ff24f653594bf280">Revisión de Frenos</option>
+                    <option value="61be1006ff24f653594bf282">Revisión de Pastillas</option>
+                    <option value="61be101cff24f653594bf284">Revisión de Discos</option>
+                    <option value="61be1029ff24f653594bf286">Revisión de Suspensión</option>
+                    <option value="61be1037ff24f653594bf288">Revisión de Amortiguadores</option>
+                    <option value="61be1044ff24f653594bf28a">Cambio de aceite</option>
+                    <option value="61be105eff24f653594bf28e">Rotación de Llantas</option>
+                    <option value="61be1050ff24f653594bf28c">Alineación</option>
                   </select>
                   <br/>
-                  <input type="text" name="duracion" class="form-control" id="floatingInput" placeholder="Duracion" value={detalleServicio.duracion} disabled/>                      
+                  <input type="text" name="duracion" class="form-control" id="floatingInput" placeholder="Duracion" value={detalleServicio.duracion + ' ' + '(minutos)'} disabled/>                      
                   <br/>                     
-                  <input type="text" name="precio" class="form-control" id="floatingInput" placeholder="Precio del servicio" disabled value={detalleServicio.precio} />
+                  <input type="text" name="precio" class="form-control" id="floatingInput" placeholder="Precio del servicio" disabled value={'(COP)' + ' ' +  detalleServicio.precio} />
                   <br/>
                   <textarea class="form-control" name="descripcion" id="floatingInput" rows="3" placeholder="Descripción del servicio" disabled value={detalleServicio.descripcion}></textarea>  
                   <br/>                        

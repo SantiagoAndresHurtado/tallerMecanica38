@@ -1,4 +1,6 @@
 import React from "react";
+
+import "../tablas.css";
 import "../style.css";
 
 const Footer = () => {
