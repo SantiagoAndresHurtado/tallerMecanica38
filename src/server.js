@@ -117,6 +117,18 @@ app.post('/crearCita', (req, res) => {
     .catch((error) => res.json({message:error}))
 });
 
+// app.get('/serviciosagenda/:id', (req, res) => {
+//     let {id} = req.params
+//     let today = new Date();
+//     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+//     // let date = "2021-12-20"
+//     client
+//     .get(`citas/${id}/${date}`)
+//     .then((ans) => res.json(ans.data))
+//     .catch((error) => res.json({message:error}))
+    
+// })
+
 
 
 // AGENDA -------------------------------------------------------------------
@@ -165,7 +177,6 @@ app.get('/borrarcita/:id', (req, res) => {
     .then((ans) => res.json(ans.data))
     .catch((error) => res.json({message:error}))
 });
-
 
 // REPORTES -------------------------------------------------------------------
 app.post('/consultareportes', (req,res) => {
