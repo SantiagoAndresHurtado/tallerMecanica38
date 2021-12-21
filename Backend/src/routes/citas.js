@@ -31,7 +31,6 @@ router.get('/citas/:id', (req, res) => {
 //encontrar cita por un idcolaborador y fecha
 router.get('/citas/:idcolaborador/:fecha', (req, res) => {
     const params = req.params;
-    console.log(params)
     citaSchema
     .find(params)
     .then((data) => res.json(data))

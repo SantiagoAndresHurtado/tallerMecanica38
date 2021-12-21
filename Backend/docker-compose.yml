@@ -12,3 +12,17 @@ services:
       - 9000:9000
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - MONGODB_URI=mongodb+srv://admin:admin@tallermecanica38.eoprt.mongodb.net/tallermecanica38?retryWrites=true&w=majority
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=tallermecanica38
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - 27017:27017
