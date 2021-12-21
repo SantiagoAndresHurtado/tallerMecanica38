@@ -66,7 +66,8 @@ const Home = ({state}) => {
                           <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" value={credenciales.password} onChange={handleChange} />
                           <br/>
                           <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <a className="small" href="password.html">Forgot password? |</a>
+                            <a className="small" href="password.html">Santiago |</a>
+                            {/* <a className="small" href="password.html">Forgot password? |</a> */}
                             <a className="small" href="password.html">Forgot mail? | </a>
                             <a className="small" href="password.html">Change password?</a> 
                             <input className="btn btn-primary" type="submit" value="Log in" />
